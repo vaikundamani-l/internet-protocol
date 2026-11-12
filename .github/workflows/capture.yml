@@ -1,0 +1,22 @@
+name: Capture controlled loopback evidence
+on:
+  push:
+    branches: [main]
+    paths: ['evidence/capture-labs.py', 'evidence/validate.py', '.github/workflows/capture.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  capture:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+      - name: Capture and independently validate owned loopback exchanges
+        run: sudo python3 evidence/capture-labs.py test
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: observed-loopback-evidence
+          path: evidence/
+          retention-days: 14

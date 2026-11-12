@@ -1,0 +1,37 @@
+{
+  "artifacts": {
+    "README.md": "29044bdf2d788fe226fe15cfe8bcdf2455032fe1a605c020893c723c4ef076f3",
+    "capture-labs.py": "e244ae852b2d8f134489cfc60601d4c276d59d998dbdc8f918d27949c4835cb6",
+    "validate.py": "758bd4b445d8b914179186f84523e2a0e17a88105c0debb36e84f62e6ff5d7e2"
+  },
+  "capture_count": 0,
+  "commands": [
+    "python evidence/capture-labs.py capture",
+    "python evidence/validate.py",
+    "python evidence/capture-labs.py test"
+  ],
+  "deduplication": "Discard PACKET_OUTGOING (4); retain other matching loopback copies. No byte-hash deduplication, so retransmissions remain.",
+  "environment": {
+    "euid": 1000,
+    "python": "3.12.14",
+    "release": "6.18.57",
+    "system": "Linux"
+  },
+  "limitations": [
+    "Ethernet-style loopback framing; Linux AF_PACKET required.",
+    "Checksums may reflect local checksum offload; validator does not require wire checksum validity.",
+    "Userspace filtering occurs before storage; unrelated frames are never retained or written."
+  ],
+  "probe": {
+    "api": "AF_PACKET/SOCK_RAW",
+    "available": false,
+    "errno": 1,
+    "error": "[Errno 1] Operation not permitted",
+    "error_type": "PermissionError"
+  },
+  "provenance": "Actual OS AF_PACKET packets only",
+  "result": "unavailable; no servers started; no packet fixtures generated",
+  "schema": 1,
+  "scope": "lo only; IPv4 127.0.0.1 both directions; exact owned ephemeral TCP/UDP port pairs.",
+  "timestamp_policy": "PCAP and CSV use monotonic elapsed time from capture start; no epoch time."
+}
