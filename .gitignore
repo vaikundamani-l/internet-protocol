@@ -1,2 +1,7 @@
 dist/
 .openai/
+node_modules/
+test-results/
+playwright-report/
+privileged-results.json
+routing-results.txt

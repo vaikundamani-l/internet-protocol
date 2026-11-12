@@ -2,7 +2,19 @@
 
 [Open the course](https://vaikundamani-l.github.io/internet-protocol/)
 
-An open-source, buildless HTML/CSS/JavaScript course with 62 bilingual chapters, 13 modules, parameter-driven teaching models, 186 practice questions and six guided projects. No API key, paid backend or account is required.
+An open-source, buildless HTML/CSS/JavaScript course with 65 bilingual chapters, 14 modules, parameter-driven teaching models, 210 practice questions and six guided projects. No API key, paid backend or account is required.
+
+## Version 3 practice and evidence
+
+- Three extended masterclasses: TCP engineering, DNS transport/validation investigations and isolated routing experiments.
+- A 30-question final practice exam, 12 automatically graded calculations, separate mastery records and spaced revision.
+- Paired bootstrap comparison with explicit uncertainty assumptions.
+- CUBIC curve, BBR BDP/pacing, TCP states/windows, DNSSEC, CORS and flow-hashing models.
+- Actual Web Crypto ECDH/HKDF/AES-GCM and tamper rejection, plus an isolated real TLS 1.3 Python lab.
+- Observed loopback PCAP/CSV with provenance, separate from synthetic fixtures.
+- Reproducible project, browser, accessibility and privileged namespace checks in GitHub Actions.
+
+See [VALIDATION.md](VALIDATION.md), [MODEL_BOUNDARIES.md](MODEL_BOUNDARIES.md) and the bilingual Evidence page for results and limits. Human editorial review and physical-device validation are not claimed.
 
 ## Choose your language
 

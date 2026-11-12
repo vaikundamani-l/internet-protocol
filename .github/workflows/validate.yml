@@ -1,0 +1,71 @@
+name: Course validation and observed evidence
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  routing:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Install isolated-routing lab prerequisites
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y frr iproute2 iputils-ping
+      - name: Real OSPF failure and BGP import policy
+        run: sudo --preserve-env=PATH node verify-routing.cjs
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: routing-validation-evidence
+          path: routing-results.txt
+          retention-days: 14
+  validate:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+      - name: Unit, content and local project checks
+        run: |
+          node tests.cjs
+          node tests-v3.cjs
+          node tests-crypto.cjs
+          node verify-projects.cjs
+          node verify-masterclasses.cjs
+          python3 labs/tls_lab.py
+      - name: Observed controlled loopback packets
+        run: sudo python3 evidence/capture-labs.py test
+      - name: Privileged isolated router and firewall lab
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y nftables iproute2 iputils-ping curl
+          sudo --preserve-env=PATH node verify-privileged.cjs
+      - name: Install pinned browser-test dependencies
+        if: always()
+        run: npm install --ignore-scripts
+      - name: Install browser engines
+        if: always()
+        run: npx playwright install --with-deps
+      - name: Desktop and mobile-emulation browser checks
+        if: always()
+        run: npm run test:browser
+      - uses: actions/upload-artifact@v5
+        if: always()
+        with:
+          name: course-validation-evidence
+          path: |
+            evidence/
+            privileged-results.json
+            playwright-report/
+            test-results/
+            package-lock.json
+          retention-days: 14

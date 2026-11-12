@@ -1,0 +1,59 @@
+{
+  "checks": [
+    {
+      "name": {
+        "en": "Content and mathematical models",
+        "ta": "உள்ளடக்கம் மற்றும் கணித models"
+      },
+      "status": "PASS",
+      "details": {
+        "en": "65 bilingual chapters, 210 questions, 243 model cases, assessment/backups, Python/Java projects and real cryptography checks passed locally.",
+        "ta": "65 இருமொழி chapters, 210 questions, 243 model cases, assessment/backups, Python/Java projects, உண்மையான cryptography checks local-ல் வெற்றி."
+      }
+    },
+    {
+      "name": {
+        "en": "Observed loopback PCAP",
+        "ta": "நேரடியாகப் பதிவு செய்த loopback PCAP"
+      },
+      "status": "PASS",
+      "details": {
+        "en": "GitHub run 43229706143: 12 observed packets; HTTP and DNS independently parsed.",
+        "ta": "GitHub run 43229706143: 12 observed packets; HTTP, DNS தனியாக parse செய்து சரிபார்க்கப்பட்டன."
+      }
+    },
+    {
+      "name": {
+        "en": "Browser and privileged labs",
+        "ta": "Browser மற்றும் privileged labs"
+      },
+      "status": "PENDING",
+      "details": {
+        "en": "CI reports will record actual outcomes; configuration alone is not a pass.",
+        "ta": "CI reports உண்மை முடிவைப் பதிவு செய்யும்; configuration மட்டும் வெற்றிச் சான்றல்ல."
+      }
+    },
+    {
+      "name": {
+        "en": "Human Tamil and technical review",
+        "ta": "மனிதர் செய்யும் தமிழ் மற்றும் technical review"
+      },
+      "status": "NOT_RUN",
+      "details": {
+        "en": "Automated review is included; independent human sign-off is still required.",
+        "ta": "Automated review உள்ளது; தனியான மனித review இன்னும் தேவை."
+      }
+    },
+    {
+      "name": {
+        "en": "Physical devices and production scale",
+        "ta": "உண்மையான devices மற்றும் production scale"
+      },
+      "status": "NOT_RUN",
+      "details": {
+        "en": "No physical radio/device or production-scale validation is claimed.",
+        "ta": "உண்மையான radio/device அல்லது production-scale validation நடந்ததாகக் கூறப்படவில்லை."
+      }
+    }
+  ]
+}

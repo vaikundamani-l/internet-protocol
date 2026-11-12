@@ -4,13 +4,13 @@ const PROJECTS = [
   {
     id:49,module:11,model:'framing',
     title:{en:'Python TCP framed chat',ta:'Python TCP framing உடன் உரையாடல்'},
-    summary:{en:'Build a two-person, turn-taking chat relay with explicit byte framing, bounded messages and deterministic disconnect behavior.',ta:'இருவர் மாறிமாறிப் பேசும் chat relay உருவாக்குங்கள். ஒவ்வொரு message-க்கும் தெளிவான byte framing, அளவு வரம்பு, இணைப்பு துண்டிக்கும்போது நிர்ணயிக்கப்பட்ட நடத்தை ஆகியவற்றைச் செயல்படுத்துங்கள்.'},
+    summary:{en:'Build a two-person, turn-taking chat relay with explicit byte framing, bounded messages and bounded frame reads and explicit terminal-input limitations.',ta:'இருவர் மாறிமாறிப் பேசும் chat relay உருவாக்குங்கள். ஒவ்வொரு message-க்கும் தெளிவான byte framing, அளவு வரம்பு, வரம்புள்ள frame reads மற்றும் terminal-input வரம்புகள் ஆகியவற்றைச் செயல்படுத்துங்கள்.'},
     prerequisites:{en:'Python 3.9 or later, three terminals, TCP byte-stream basics, UTF-8 and hexadecimal notation. No external packages or administrator rights are required.',ta:'Python 3.9 அல்லது புதிய பதிப்பு, மூன்று terminal-கள், TCP byte stream பற்றிய அடிப்படை அறிவு, UTF-8 மற்றும் hexadecimal குறியீடு தேவை. வெளிப்புற package அல்லது administrator அனுமதி தேவையில்லை.'},
     objectives:{en:['Implement exact reads and a four-byte network-order length.','Relay complete UTF-8 messages between two clients.','Demonstrate fragmented headers, oversize rejection and clean shutdown.'],ta:['நான்கு byte network-order length மற்றும் தேவையான முழு அளவையும் படிக்கும் முறையைச் செயல்படுத்துதல்.','இரு client-களுக்கிடையே முழுமையான UTF-8 message-களை அனுப்புதல்.','பிரிக்கப்பட்ட header, அளவு மீறல் நிராகரிப்பு, முறையான நிறுத்தம் ஆகியவற்றை நிரூபித்தல்.']},
     sections:[
       {heading:{en:'Milestone 1: define the wire contract',ta:'கட்டம் 1: wire format ஒப்பந்தம்'},body:{en:'TCP delivers ordered bytes, not chat records. Define each record as a four-byte unsigned big-endian payload length followed by exactly that many UTF-8 bytes. Count encoded bytes rather than characters. Limit payloads to 4096 bytes before allocating or decoding them; permit an empty message as a valid turn. The exact-read loop accumulates short reads and raises EOF when the peer closes before the requested count. A zero-length socket read is not an empty chat record. Draw the header and payload separately and predict how the receiver behaves when the header arrives one byte at a time.',ta:'TCP வரிசைப்படுத்தப்பட்ட byte-களையே தருகிறது; chat record எல்லைகளை அது காப்பதில்லை. முதலில் நான்கு byte unsigned big-endian payload length, பின்னர் அந்த அளவிலான UTF-8 byte-கள் என்பதே ஒப்பந்தம். எழுத்துகளின் எண்ணிக்கையை அல்ல, encode செய்யப்பட்ட byte-களின் எண்ணிக்கையைப் பயன்படுத்துங்கள். நினைவகம் ஒதுக்குவதற்கும் decode செய்வதற்கும் முன் payload 4096 byte-களுக்குள் உள்ளதா என்று பார்க்க வேண்டும். காலியான message-மும் ஒரு செல்லுபடியான turn. exact-read loop சிறு பகுதிகளாக வரும் byte-களைச் சேர்க்கிறது; வேண்டிய அளவு வருமுன் peer மூடினால் EOF ஏற்படும். socket read காலியாகத் திரும்புவது காலியான chat record அல்ல. Header-ஐயும் payload-ஐயும் தனியாக வரைந்து, header ஒவ்வொரு byte-ஆக வந்தால் receiver எப்படி செயல்படும் என முன்கணியுங்கள்.'}},
-      {heading:{en:'Milestone 2: relay turns without hidden concurrency',ta:'கட்டம் 2: மறைமுக concurrency இல்லாத relay'},body:{en:'The server accepts client A and then client B. A sends first; the server forwards A’s frame to B, then forwards B’s response to A. This deliberately small protocol avoids simultaneous writers and makes ownership of each read obvious. It is a chat conversation, but it is not a broadcast room. The client modes enforce the initial turn and then alternate input and receive. Every connected socket has a thirty-second I/O timeout so a silent partner cannot occupy the exercise indefinitely. Waiting for the second connection is an explicit server setup state; use Ctrl+C to cancel it. The server handles one pair and exits when either side fails.',ta:'Server முதலில் client A-ஐயும் அடுத்து client B-ஐயும் ஏற்கிறது. A முதலில் அனுப்பும்; server அதன் frame-ஐ B-க்கு அனுப்பிவிட்டு B-யின் பதிலை A-க்கு அனுப்பும். இந்தச் சிறிய protocol ஒரே நேரத்தில் பல writer-கள் செயல்படுவதைத் தவிர்த்து, எந்த read யாருக்குரியது என்பதைத் தெளிவாக்குகிறது. இது உரையாடல்; பலருக்கான broadcast room அல்ல. Client mode-கள் முதல் turn-ஐ நிர்ணயித்து பின்னர் input, receive என்று மாறுகின்றன. இணைக்கப்பட்ட ஒவ்வொரு socket-க்கும் முப்பது விநாடி I/O timeout இருப்பதால் அமைதியாக இருக்கும் peer முடிவில்லாமல் காத்திருக்க வைக்காது. இரண்டாவது இணைப்பிற்காகக் காத்திருப்பது server அமைப்பின் தனிப்பட்ட நிலை; அதை Ctrl+C மூலம் நிறுத்தலாம். Server ஒரு ஜோடியை மட்டுமே கையாளும்; ஒரு முனை தோல்வியடைந்தாலும் வெளியேறும்.'}},
-      {heading:{en:'Milestone 3: adversarial acceptance checks',ta:'கட்டம் 3: தவறான உள்ளீட்டுடன் ஏற்றுக்கொள்ளும் சோதனைகள்'},body:{en:'First pass the included socket-pair self-test, which splits a frame into individual writes and verifies reconstruction. Then exchange both English and Tamil text in the three terminals. Acceptance requires three round trips without merged or missing turns, rejection of a 4097-byte header before reading a body, and visible termination after EOF or timeout. Repeat with an abrupt client exit while the other peer is waiting. Record which endpoint noticed first; forwarding a message does not prove that a human read it. Keep the relay on loopback: the exercise supplies neither identity verification nor encryption. A later extension could add message identifiers and acknowledgments, but document whether they acknowledge relay receipt, client receipt or display.',ta:'முதலில் உள்ள socket-pair self-test-ஐ இயக்குங்கள்; அது ஒரு frame-ஐத் தனித்தனி write-களாகப் பிரித்து மீண்டும் சரியாகச் சேர்வதைச் சோதிக்கிறது. பின்னர் மூன்று terminal-களில் English, Tamil உரைகளைப் பரிமாறுங்கள். மூன்று round trip-களிலும் turn-கள் கலக்காமலும் விடுபடாமலும் இருக்க வேண்டும்; 4097-byte header வந்தால் body படிப்பதற்கு முன்பே நிராகரிக்க வேண்டும்; EOF அல்லது timeout-க்கு பிறகு நிறுத்தம் தென்பட வேண்டும். மற்ற peer காத்திருக்கும்போது ஒரு client-ஐ திடீரென்று மூடி மீண்டும் சோதியுங்கள். எந்த முனை முதலில் கண்டது என்று பதிவு செய்யுங்கள்; relay அனுப்பியது மனிதர் வாசித்ததற்கான சான்று அல்ல. Identity verification, encryption இல்லாததால் loopback-லேயே வைத்திருங்கள். பின்னர் message identifier, acknowledgment சேர்க்கலாம்; அது relay பெற்றதையா, client பெற்றதையா, திரையில் காட்டியதையா உறுதிசெய்கிறது என்பதை எழுதுங்கள்.'}}
+      {heading:{en:'Milestone 2: relay turns without hidden concurrency',ta:'கட்டம் 2: மறைமுக concurrency இல்லாத relay'},body:{en:'The server accepts client A and then client B. A sends first; the server forwards A’s frame to B, then forwards B’s response to A. This deliberately small protocol avoids simultaneous writers and makes ownership of each read obvious. It is a chat conversation, but it is not a broadcast room. The client modes enforce the initial turn and then alternate input and receive. Each frame read has one thirty-second monotonic deadline across its header and payload. Socket writes also have a timeout. Terminal input can still wait indefinitely and does not observe peer disconnects until the next socket operation; use Ctrl+C to leave that prompt. Waiting for the second connection is an explicit server setup state; use Ctrl+C to cancel it. The server handles one pair and exits when either side fails.',ta:'Server முதலில் client A-ஐயும் அடுத்து client B-ஐயும் ஏற்கிறது. A முதலில் அனுப்பும்; server அதன் frame-ஐ B-க்கு அனுப்பிவிட்டு B-யின் பதிலை A-க்கு அனுப்பும். இந்தச் சிறிய protocol ஒரே நேரத்தில் பல writer-கள் செயல்படுவதைத் தவிர்த்து, எந்த read யாருக்குரியது என்பதைத் தெளிவாக்குகிறது. இது உரையாடல்; பலருக்கான broadcast room அல்ல. Client mode-கள் முதல் turn-ஐ நிர்ணயித்து பின்னர் input, receive என்று மாறுகின்றன. ஒவ்வொரு frame read-க்கும் header, payload இரண்டையும் சேர்த்து ஒரே முப்பது-second monotonic deadline உண்டு. Socket writes-க்கும் timeout உண்டு. Terminal input முடிவில்லாமல் காத்திருக்கலாம்; அடுத்த socket operation வரும்வரை peer disconnect தெரியாது. அந்த prompt-இலிருந்து வெளியேற Ctrl+C பயன்படுத்துங்கள். இரண்டாவது இணைப்பிற்காகக் காத்திருப்பது server அமைப்பின் தனிப்பட்ட நிலை; அதை Ctrl+C மூலம் நிறுத்தலாம். Server ஒரு ஜோடியை மட்டுமே கையாளும்; ஒரு முனை தோல்வியடைந்தாலும் வெளியேறும்.'}},
+      {heading:{en:'Milestone 3: adversarial acceptance checks',ta:'கட்டம் 3: தவறான உள்ளீட்டுடன் ஏற்றுக்கொள்ளும் சோதனைகள்'},body:{en:'First pass the included socket-pair self-test, which splits a frame into individual writes and verifies reconstruction. Then exchange both English and Tamil text in the three terminals. Acceptance requires three round trips without merged or missing turns, rejection of a four-byte header declaring a 4097-byte payload before reading a body, and visible termination after EOF or timeout. Repeat with an abrupt client exit while the other peer is waiting. Record which endpoint noticed first; forwarding a message does not prove that a human read it. Keep the relay on loopback: the exercise supplies neither identity verification nor encryption. A later extension could add message identifiers and acknowledgments, but document whether they acknowledge relay receipt, client receipt or display.',ta:'முதலில் உள்ள socket-pair self-test-ஐ இயக்குங்கள்; அது ஒரு frame-ஐத் தனித்தனி write-களாகப் பிரித்து மீண்டும் சரியாகச் சேர்வதைச் சோதிக்கிறது. பின்னர் மூன்று terminal-களில் English, Tamil உரைகளைப் பரிமாறுங்கள். மூன்று round trip-களிலும் turn-கள் கலக்காமலும் விடுபடாமலும் இருக்க வேண்டும்; 4097-byte payload நீளத்தைக் குறிப்பிடும் நான்கு-byte header வந்தால் body படிப்பதற்கு முன்பே நிராகரிக்க வேண்டும்; EOF அல்லது timeout-க்கு பிறகு நிறுத்தம் தென்பட வேண்டும். மற்ற peer காத்திருக்கும்போது ஒரு client-ஐ திடீரென்று மூடி மீண்டும் சோதியுங்கள். எந்த முனை முதலில் கண்டது என்று பதிவு செய்யுங்கள்; relay அனுப்பியது மனிதர் வாசித்ததற்கான சான்று அல்ல. Identity verification, encryption இல்லாததால் loopback-லேயே வைத்திருங்கள். பின்னர் message identifier, acknowledgment சேர்க்கலாம்; அது relay பெற்றதையா, client பெற்றதையா, திரையில் காட்டியதையா உறுதிசெய்கிறது என்பதை எழுதுங்கள்.'}}
     ],
     example:{en:'For the message Hi, the wire bytes are 00 00 00 02 48 69. Two consecutive messages require two headers even if one recv returns both. A Tamil character may occupy three UTF-8 bytes, so len(text.encode("utf-8")) is the relevant length.',ta:'Hi என்ற message-ன் wire byte-கள் 00 00 00 02 48 69. தொடர்ச்சியான இரண்டு message-களும் ஒரே recv-ல் கிடைத்தாலும் இரண்டு header-கள் தேவை. ஒரு Tamil எழுத்து மூன்று UTF-8 byte-களைப் பயன்படுத்தலாம்; ஆகவே len(text.encode("utf-8")) என்பதே தேவையான அளவு.'},
     failure:{en:'If B never sends its turn, A waits and the relay times out. This is an application turn-taking stall, not proof of packet loss. Restart the pair and obey the A-first sequence; replacing framing with recv(4096) would only introduce a second bug.',ta:'B தனது turn-ல் அனுப்பாவிட்டால் A காத்திருக்கும்; relay timeout அடையும். இது application-ன் turn காத்திருப்பு; packet loss நடந்ததற்கான சான்றல்ல. ஜோடியை மீண்டும் தொடங்கி A முதலில் அனுப்பும் வரிசையைப் பின்பற்றுங்கள். Framing-க்கு பதில் recv(4096) மட்டும் பயன்படுத்துவது மேலும் ஒரு பிழையை உருவாக்கும்.'},
@@ -21,22 +21,27 @@ const PROJECTS = [
       {question:{en:'Does relay sendall success prove the receiver displayed the text?',ta:'Relay-யின் sendall வெற்றி, receiver உரையைக் காட்டியதை உறுதிப்படுத்துமா?'},options:{en:['No; a display acknowledgment would be a separate application event','Yes, TCP reads the display','Yes, UTF-8 implies acknowledgment'],ta:['இல்லை; காட்சிப்படுத்திய acknowledgment தனி application நிகழ்வு','ஆம்; TCP திரையைப் படிக்கிறது','ஆம்; UTF-8 acknowledgment தருகிறது']},answer:0,explanation:{en:'A successful send hands bytes to the local networking stack; application consumption is separate.',ta:'Send வெற்றி byte-களை local networking stack ஏற்றதைச் சொல்கிறது; application பயன்படுத்தியது தனி நிகழ்வு.'}}
     ],
     refs:[['Python socket API','https://docs.python.org/3/library/socket.html'],['TCP specification','https://www.rfc-editor.org/rfc/rfc9293.html']],
-    files:[{name:'chat.py',content:String.raw`import socket, struct, sys, threading
+    files:[{name:'chat.py',content:String.raw`import socket, struct, sys, threading, time
 
-def exact(s, n):
+def exact(s, n, deadline):
     data = bytearray()
     while len(data) < n:
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            raise TimeoutError("frame deadline")
+        s.settimeout(remaining)
         part = s.recv(n - len(data))
         if not part:
             raise EOFError("incomplete frame / முழுமையற்ற frame")
         data.extend(part)
     return bytes(data)
 
-def receive(s):
-    n = struct.unpack("!I", exact(s, 4))[0]
+def receive(s, timeout=30):
+    deadline = time.monotonic() + timeout
+    n = struct.unpack("!I", exact(s, 4, deadline))[0]
     if n > 4096:
         raise ValueError("oversize / அளவு மீறல்")
-    return exact(s, n).decode("utf-8")
+    return exact(s, n, deadline).decode("utf-8")
 
 def send(s, text):
     data = text.encode("utf-8")
@@ -67,7 +72,24 @@ def main():
             raise AssertionError("accepted EOF")
         except EOFError:
             pass
-        b.close(); print("PASS"); return
+        b.close()
+        a, b = socket.socketpair()
+        def slow_writer():
+            try:
+                for byte in b"\x00\x00\x00\x02Hi":
+                    a.sendall(bytes([byte])); time.sleep(0.03)
+            except OSError:
+                pass
+        t = threading.Thread(target=slow_writer); t.start()
+        started = time.monotonic()
+        try:
+            receive(b, timeout=0.09)
+            raise AssertionError("accepted slow frame")
+        except TimeoutError:
+            assert time.monotonic() - started < 0.5
+        finally:
+            b.close(); t.join(); a.close()
+        print("PASS"); return
     if mode == "server":
         with socket.socket() as listener:
             listener.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)

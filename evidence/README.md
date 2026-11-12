@@ -14,10 +14,12 @@ firewall rules are changed. Capture/test exit 2 when capture is unavailable;
 the validator also exits 2 when no fixture can be validated. Exit 0 means success.
 Do not interpret a skipped test as successful packet verification.
 
-The initial probe in this environment failed with EPERM. `metadata.json`
-records the repeatable probe outcome and zero captured packets. No PCAP or CSV
-is supplied because no real packet capture was possible. No owned servers are
-started when the probe fails. No synthetic packets are substituted.
+The initial local probe failed with EPERM. The supplied PCAP and CSV were then
+observed on a GitHub-hosted Linux runner in run 43229706143, source commit
+199e686ce4c899e4e52ec31df573dd43d770f373. Twelve packets were retained: ten TCP
+and two UDP. metadata.json records the capture environment and artifact hashes.
+No owned servers start when a probe fails; no synthetic packets are substituted.
+The README was updated after retrieval; its metadata hash tracks this edition.
 
 On a supported host, capture binds AF_PACKET exclusively to lo, then reserves
 four ephemeral ports on 127.0.0.1: one client and server each for TCP and UDP.

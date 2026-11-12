@@ -1,4 +1,7 @@
-# Coverage ledger — Protocol Atlas v2
+# Coverage ledger — Protocol Atlas v3
+
+Version 3 adds chapters 63–65, 24 questions, seven calculated models, final assessment, graded calculations, revision, bootstrap analysis, observed packet evidence and cryptographic exercises. The table below records the earlier foundation; see MODEL_BOUNDARIES.md and VALIDATION.md for current qualifications.
+
 
 The v2 syllabus contains 62 bilingual chapters across 13 modules. Every chapter includes prerequisites, objectives, at least three explanatory sections, a worked example, a failure case, an Ubuntu exercise, expected observations, cleanup guidance, three assessment questions and primary references. English and Tamil records are authored together; Tamil explanations retain English technical vocabulary.
 
