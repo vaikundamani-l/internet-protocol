@@ -1,47 +1,62 @@
-# Protocol Atlas — Internet Protocol Master Course
+# Protocol Atlas — Tamil & English Internet Course
 
-A free, responsive course website built with plain HTML, CSS and JavaScript. No build step, backend, paid service, or API key is required.
+[Open the course](https://vaikundamani-l.github.io/internet-protocol/)
 
-## Included
+An open-source, buildless HTML/CSS/JavaScript course with 62 bilingual chapters, 13 modules, parameter-driven teaching models, 186 practice questions and six guided projects. No API key, paid backend or account is required.
 
-- Eight modules with 30 original core lessons, English explanations and Tamil concept notes.
-- A topic-specific narrated walkthrough in every lesson, with play/pause, manual steps, reset and speed controls.
-- Ubuntu exercises with expected observations, knowledge checks and primary-source links.
-- IPv4 subnet calculator supporting /0 through /32, including /31 point-to-point and /32 host-route cases.
-- Searchable curriculum, deep links, browser-local progress, responsive navigation, dark theme and reduced-motion support.
+## Choose your language
 
-## Run locally
+Open **Settings → Course language → தமிழ் / English**. The choice persists across navigation and reloads. Tamil mode uses Tamil explanations, navigation, lab guidance, simulation narration and quiz feedback while preserving English technical vocabulary, code, protocol field names and reference titles. The header shortcut switches the same global setting.
 
-From this directory:
+## Learn and experiment
+
+- Prerequisites, objectives, explanatory sections, worked examples, failure diagnosis, labs and primary sources in each chapter.
+- Change loss, cache, routing, queue, MTU, certificate, policy and timing inputs; inspect computed state and event traces.
+- Bit-level IPv4 calculator, RTO equations, Dijkstra graph, BGP policy, NTP timing, VXLAN overhead and other focused models.
+- Download synthetic PCAPs/annotated CSVs for ARP, DNS and TCP. These are locally generated teaching fixtures, not live captures.
+- Download guided Python/Java project sources for framed chat, file transfer, resumable authenticated sharing, diagnostics, namespace routing and reproducible benchmarks.
+- Save notes/bookmarks, record assessment scores, export/import learning data, print chapters and use the course offline after its initial cache installation.
+
+See [COURSE_SCOPE.md](COURSE_SCOPE.md) for the explicit gap-to-feature ledger and model limitations. Not every Internet standard is covered, and these models do not implement complete production protocol stacks. Local lab projects are deliberately limited and must not be represented as hardened public services.
+
+## Local use
 
 ```sh
 python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-Open http://127.0.0.1:8000. Stop with Ctrl+C. Google Fonts are optional: system-font fallbacks work without that external request.
+Open `http://127.0.0.1:8000/`; stop with Ctrl+C. The course has no external font/CDN dependency. Primary references need Internet access. Service workers require localhost or HTTPS and supported browser settings. When an updated offline cache is ready, use the reload notice.
 
 ## Free GitHub Pages hosting
 
-In repository **Settings → Pages → Build and deployment**, select **Deploy from a branch**, branch **main**, folder **/(root)**, and save. The included `.nojekyll` ensures files are served directly. GitHub will show the deployment URL and status there. Publication must be enabled separately; source files alone do not prove the site is live.
+This repository uses **main → /(root)** under Settings → Pages. `.nojekyll` enables direct static serving. No build workflow is required. GitHub Pages publishes pushed changes automatically; confirm deployment status before assuming a new revision is live.
 
 ## Files
 
-- `index.html`: application shell
-- `style.css`: responsive visual design and themes
-- `lessons.js`: curriculum and original educational content
-- `app.js`: navigation, walkthroughs, progress, quizzes and calculator
-- `tests.cjs`: structural and calculation checks
-
-## Educational scope
-
-This is a substantial core course, not a claim to cover every Internet protocol or all expert implementation details. Every walkthrough is a simplified logical model, not a packet-accurate simulator or live traffic capture. Expert extensions and a capstone are documented in the final lesson. Practical labs need the listed system tools and, in some cases, administrator privileges. The website never executes shell commands.
-
-Primary references include Internet Society history, RFC Editor specifications, Linux documentation, Wireshark documentation, Python documentation and iperf documentation. Explanations are original summaries; externally linked documents retain their own licenses. Progress is stored only in this browser and can be lost when browser data is cleared. There is no account sync, analytics, or accreditation claim.
+| File | Purpose |
+| --- | --- |
+| `core-a.js`, `core-b.js` | Expanded bilingual core chapters 1–30 |
+| `advanced.js` | Advanced chapters 31–48 |
+| `projects.js` | Guided projects and downloadable sources 49–54 |
+| `services.js` | Service-protocol chapters 55–62 |
+| `i18n.js` | Interface languages, module names and glossary |
+| `models.js`, `engineering-models.js` | Pure parameter-driven model computations |
+| `traces.js` | Synthetic Ethernet/IPv4 PCAP construction with checksums |
+| `app.js` | Navigation, localized rendering, persistence, assessment and downloads |
+| `sw.js`, `manifest.webmanifest` | Offline cache and install metadata |
+| `tests-v2.cjs` | Content, model, rendering, PCAP and persistence checks |
+| `lessons.js` | Archived v1 data; no longer loaded by the website |
 
 ## Verification
 
 ```sh
 node --check app.js
-node --check lessons.js
+node --check models.js
+node --check engineering-models.js
 node tests.cjs
+node verify-projects.cjs
 ```
+
+`tests.cjs` delegates to `tests-v2.cjs`. The checks use only Node built-ins. Browser QA is separate. To run project exercises, download the matching source from its Ubuntu lab and follow that chapter. Root/network-namespace exercises need Linux capabilities; Java source needs a suitable JDK. Code is never executed by the course website itself.
+
+Learning records remain in localStorage. Export before clearing browser storage. Backup import validates IDs, scores and note sizes before replacing records; it does not import executable HTML or code. No analytics or account synchronization are included. Explanations are original educational summaries; primary source documents retain their own licensing and status.
