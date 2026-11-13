@@ -1,1 +1,1 @@
-{"name":"protocol-atlas","version":"3.0.0","private":true,"scripts":{"test":"node tests.cjs && node tests-v3.cjs && node tests-crypto.cjs","test:browser":"playwright test"},"devDependencies":{"@playwright/test":"1.56.1","@axe-core/playwright":"4.10.2"}}
+{"name":"protocol-atlas","version":"3.0.0","private":true,"scripts":{"test":"node tests.cjs && node tests-v3.cjs && node tests-depth.cjs && node tests-crypto.cjs","test:browser":"playwright test"},"devDependencies":{"@playwright/test":"1.56.1","@axe-core/playwright":"4.10.2"}}

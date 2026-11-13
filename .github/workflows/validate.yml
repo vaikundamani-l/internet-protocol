@@ -38,6 +38,7 @@ jobs:
         run: |
           node tests.cjs
           node tests-v3.cjs
+          node tests-depth.cjs
           node tests-crypto.cjs
           node verify-projects.cjs
           node verify-masterclasses.cjs

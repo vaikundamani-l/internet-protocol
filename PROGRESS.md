@@ -11,6 +11,12 @@ The course is published at https://vaikundamani-l.github.io/internet-protocol/.
 - Real FRR 8.4.4 OSPF alternate-route/restoration and BGP import allow/deny checks passed in run 43348384576.
 - Isolated namespace routing/firewall acceptance checks passed in that run.
 
+## Lesson-depth editorial pass
+
+- Chapters 31–32 now have extended bilingual theory, worked calculations, troubleshooting investigations and solved exercises in the local completion batch.
+- `tests-depth.cjs` enforces the structure, Tamil pairing and minimum instructional depth for every added supplement.
+- The exact chapter-by-chapter status is maintained in `LESSON_DEPTH.md`; chapters not listed as complete there remain pending.
+
 ## Current verification
 
 Run: https://github.com/vaikundamani-l/internet-protocol/actions/runs/43348384576

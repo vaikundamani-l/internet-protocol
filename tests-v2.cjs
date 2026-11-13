@@ -1,6 +1,6 @@
 'use strict';
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
-const files=['i18n.js','core-a.js','core-b.js','advanced.js','projects.js','services.js','masterclasses.js','models.js','engineering-models.js','precision-models.js','traces.js'];
+const files=['i18n.js','core-a.js','core-b.js','advanced.js','projects.js','services.js','masterclasses.js','depth-d.js','depth-reader.js','models.js','engineering-models.js','precision-models.js','traces.js'];
 const context={TextEncoder,Uint8Array,DataView,console};vm.createContext(context);for(const f of files)vm.runInContext(fs.readFileSync(f,'utf8'),context,{filename:f});
 const data=vm.runInContext('({lessons:[...CORE_A,...CORE_B,...ADVANCED,...PROJECTS,...SERVICES,...MASTERCLASSES],MODEL,UI,MODULE_NAMES,subnetCalc,benchmarkStats,TraceLab})',context),{lessons,MODEL,UI,subnetCalc,benchmarkStats,TraceLab}=data;
 assert.equal(lessons.length,65);assert.equal(new Set(lessons.map(l=>l.id)).size,65);

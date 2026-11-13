@@ -23,6 +23,7 @@ Open **Settings → Course language → தமிழ் / English**. The choice 
 ## Learn and experiment
 
 - Prerequisites, objectives, explanatory sections, worked examples, failure diagnosis, labs and primary sources in each chapter.
+- A validated lesson-depth supplement is being added chapter by chapter. Chapters 31–32 currently include extended bilingual theory, two multi-step worked cases, two evidence-led troubleshooting cases and three solved exercises each; see [LESSON_DEPTH.md](LESSON_DEPTH.md) for the exact ledger.
 - Change loss, cache, routing, queue, MTU, certificate, policy and timing inputs; inspect computed state and event traces.
 - Bit-level IPv4 calculator, RTO equations, Dijkstra graph, BGP policy, NTP timing, VXLAN overhead and other focused models.
 - Download synthetic PCAPs/annotated CSVs for ARP, DNS and TCP. These are locally generated teaching fixtures, not live captures.
@@ -49,6 +50,7 @@ This repository uses **main → /(root)** under Settings → Pages. `.nojekyll` 
 | --- | --- |
 | `core-a.js`, `core-b.js` | Expanded bilingual core chapters 1–30 |
 | `advanced.js` | Advanced chapters 31–48 |
+| `depth-*.js`, `depth-reader.js` | Extended bilingual lesson-depth records and their accessible renderer |
 | `projects.js` | Guided projects and downloadable sources 49–54 |
 | `services.js` | Service-protocol chapters 55–62 |
 | `i18n.js` | Interface languages, module names and glossary |
@@ -66,6 +68,7 @@ node --check app.js
 node --check models.js
 node --check engineering-models.js
 node tests.cjs
+node tests-depth.cjs
 node verify-projects.cjs
 ```
 
