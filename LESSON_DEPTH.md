@@ -8,13 +8,13 @@ The base course still contains all 65 bilingual chapters. A chapter is marked **
 
 | Chapters | Subject | Added depth per chapter | Status |
 | --- | --- | --- | --- |
-| 31–33 | Addressing, link and switched-topology engineering | 3 extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 solved exercises, cross-topic connections | Depth complete and validated |
+| 31–34 | Addressing, link, switched-topology and IPv6 translation engineering | 3 extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 solved exercises, cross-topic connections | Depth complete and validated |
 
 ## Remaining editorial pass
 
 | Chapters | Status |
 | --- | --- |
-| 34–48 | Advanced networking depth pass pending |
+| 35–48 | Advanced networking depth pass pending |
 | 49–54 | Guided-project lesson depth pass pending |
 | 55–62 | Service-protocol depth pass pending |
 | 63–65 | Capstone/review depth pass pending |
