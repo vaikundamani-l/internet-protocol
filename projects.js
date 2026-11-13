@@ -422,7 +422,8 @@ def run(*args, **kw):
 def inside(ns, *args, **kw):
     return run("ip", "netns", "exec", ns, *args, **kw)
 def existing():
-    return {n["name"] for n in json.loads(run("ip", "-j", "netns", "list", capture_output=True).stdout)}
+    output = run("ip", "-j", "netns", "list", capture_output=True).stdout.strip()
+    return {n["name"] for n in json.loads(output or "[]")}
 def setup():
     if existing().intersection(NAMES): raise RuntimeError("names occupied / பெயர்கள் பயன்பாட்டில் உள்ளன")
     created = []
