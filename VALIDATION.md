@@ -1,5 +1,14 @@
 # Validation record
 
+Verified 2026-11-13: [run 43348384576](https://github.com/vaikundamani-l/internet-protocol/actions/runs/43348384576), source commit 68895d5526d7113b3f4e9b0837951b40e88c7322. Both workflow jobs passed.
+
+- 30 browser cases passed with no failures, skips or flaky results across Chromium, Firefox, WebKit, Android emulation and iOS emulation. This includes both-language keyboard/axe checks, offline reload, notes, grading, input recovery and actual cryptography.
+- Four isolated namespace/firewall checks passed, including cleanup.
+- FRR 8.4.4 passed OSPF alternate-path/restoration and BGP import allow/deny checks.
+- Python/Java projects, 65-chapter bilingual checks, 210 questions, 243 model parameter cases, observed packets and TLS trust/hostname negative tests passed.
+
+Raw retained reports: [browser](evidence/browser-results.json), [firewall](evidence/privileged-results.json), [routing](evidence/routing-results.txt). Dependency versions from that run are recorded in package-lock.json.
+
 The live Evidence & validation page reads validation.json. It distinguishes completed checks from pending or unavailable checks. CI artifacts preserve the raw reports.
 
 Run locally:

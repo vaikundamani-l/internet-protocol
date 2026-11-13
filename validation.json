@@ -27,10 +27,10 @@
         "en": "Browser and privileged labs",
         "ta": "Browser மற்றும் privileged labs"
       },
-      "status": "PENDING",
+      "status": "PASS",
       "details": {
-        "en": "CI reports will record actual outcomes; configuration alone is not a pass.",
-        "ta": "CI reports உண்மை முடிவைப் பதிவு செய்யும்; configuration மட்டும் வெற்றிச் சான்றல்ல."
+        "en": "30 browser checks passed across Chromium, Firefox, WebKit, Android/iOS emulation. Real FRR routing, namespace firewall and cleanup checks passed. Reports are stored in evidence/.",
+        "ta": "Chromium, Firefox, WebKit, Android/iOS emulation-ல் 30 browser checks வெற்றி. உண்மையான FRR routing, namespace firewall, cleanup checks வெற்றி. Reports evidence/ பகுதியில் உள்ளன."
       }
     },
     {
@@ -55,5 +55,8 @@
         "ta": "உண்மையான radio/device அல்லது production-scale validation நடந்ததாகக் கூறப்படவில்லை."
       }
     }
-  ]
+  ],
+  "tested_commit": "68895d5526d7113b3f4e9b0837951b40e88c7322",
+  "workflow_run": "https://github.com/vaikundamani-l/internet-protocol/actions/runs/43348384576",
+  "verified_date": "2026-11-13"
 }

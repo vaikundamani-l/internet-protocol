@@ -1,4 +1,4 @@
-const CACHE='protocol-atlas-v3.0.1';
+const CACHE='protocol-atlas-v3.0.2';
 const FILES=['./','index.html','style.css','i18n.js','core-a.js','core-b.js','advanced.js','projects.js','services.js','models.js','engineering-models.js','traces.js','app.js','masterclasses.js','precision-models.js','academy.js','crypto-lab.js','labs/tls_lab.py','validation.json','VALIDATION.md','MODEL_BOUNDARIES.md','REVIEW.md','evidence/loopback.pcap','evidence/packets.csv','evidence/metadata.json','evidence/README.md','icon.svg','manifest.webmanifest'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE).then(c=>c.addAll(FILES)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k.startsWith('protocol-atlas-')&&k!==CACHE).map(k=>caches.delete(k)))).then(()=>self.clients.claim())));

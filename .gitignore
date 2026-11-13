@@ -3,5 +3,5 @@ dist/
 node_modules/
 test-results/
 playwright-report/
-privileged-results.json
-routing-results.txt
+/privileged-results.json
+/routing-results.txt

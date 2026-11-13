@@ -1,0 +1,112 @@
+bgpd version 8.4.4
+Copyright 1996-2005 Kunihiro Ishiguro, et al.
+configured with:
+	'--build=x86_64-linux-gnu' '--prefix=/usr' '--includedir=${prefix}/include' '--mandir=${prefix}/share/man' '--infodir=${prefix}/share/info' '--sysconfdir=/etc' '--localstatedir=/var' '--disable-option-checking' '--disable-silent-rules' '--libdir=${prefix}/lib/x86_64-linux-gnu' '--libexecdir=${prefix}/lib/x86_64-linux-gnu' '--disable-maintainer-mode' '--localstatedir=/var/run/frr' '--sbindir=/usr/lib/frr' '--sysconfdir=/etc/frr' '--with-vtysh-pager=/usr/bin/pager' '--libdir=/usr/lib/x86_64-linux-gnu/frr' '--with-moduledir=/usr/lib/x86_64-linux-gnu/frr/modules' '--disable-dependency-tracking' '--enable-rpki' '--disable-scripting' '--disable-pim6d' '--with-libpam' '--enable-doc' '--enable-doc-html' '--enable-snmp' '--enable-fpm' '--disable-protobuf' '--disable-zeromq' '--enable-ospfapi' '--enable-bgp-vnc' '--enable-multipath=256' '--enable-user=frr' '--enable-group=frr' '--enable-vty-group=frrvty' '--enable-configfile-mask=0640' '--enable-logfile-mask=0640' 'build_alias=x86_64-linux-gnu' 'PYTHON=python3'
+
+ROUTER 1 
+Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
+10.255.0.2        1 Full/-          10.337s           39.714s 10.0.12.2       v2:10.0.12.1                         1     0     0
+10.255.0.3        1 Full/-          10.337s           39.744s 10.0.13.3       v3:10.0.13.1                         1     0     0
+
+
+10.0.12.0/24 dev v2 proto kernel scope link src 10.0.12.1 
+10.0.13.0/24 dev v3 proto kernel scope link src 10.0.13.1 
+10.0.23.0/24 nhid 20 via 10.0.12.2 dev v2 proto ospf metric 20 
+10.255.0.2 nhid 20 via 10.0.12.2 dev v2 proto ospf metric 20 
+10.255.0.3 nhid 20 via 10.0.12.2 dev v2 proto ospf metric 20 
+198.51.100.3 nhid 18 via 10.0.13.3 dev v3 proto bgp metric 20 
+
+ROUTER 2 
+Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
+10.255.0.1        1 Full/-          10.357s           39.642s 10.0.12.1       v1:10.0.12.2                         1     0     0
+10.255.0.3        1 Full/-          5.356s            39.724s 10.0.23.3       v3:10.0.23.2                         0     0     0
+
+
+10.0.12.0/24 dev v1 proto kernel scope link src 10.0.12.2 
+10.0.13.0/24 nhid 23 proto ospf metric 20 
+	nexthop via 10.0.12.1 dev v1 weight 1 
+	nexthop via 10.0.23.3 dev v3 weight 1 
+10.0.23.0/24 dev v3 proto kernel scope link src 10.0.23.2 
+10.255.0.1 nhid 18 via 10.0.12.1 dev v1 proto ospf metric 20 
+10.255.0.3 nhid 24 via 10.0.23.3 dev v3 proto ospf metric 20 
+
+ROUTER 3 
+Neighbor ID     Pri State           Up Time         Dead Time Address         Interface                        RXmtL RqstL DBsmL
+10.255.0.1        1 Full/-          10.377s           39.622s 10.0.13.1       v1:10.0.13.3                         1     0     0
+10.255.0.2        1 Full/-          5.376s            39.674s 10.0.23.2       v2:10.0.23.3                         1     0     0
+
+
+10.0.12.0/24 nhid 27 via 10.0.23.2 dev v2 proto ospf metric 20 
+10.0.13.0/24 dev v1 proto kernel scope link src 10.0.13.3 
+10.0.23.0/24 dev v2 proto kernel scope link src 10.0.23.3 
+10.255.0.1 nhid 22 via 10.0.13.1 dev v1 proto bgp metric 20 
+10.255.0.2 nhid 27 via 10.0.23.2 dev v2 proto ospf metric 20 
+
+BGP router identifier 10.255.0.1, local AS number 65001 vrf-id 0
+BGP table version 2
+RIB entries 3, using 576 bytes of memory
+Peers 1, using 724 KiB of memory
+
+Neighbor        V         AS   MsgRcvd   MsgSent   TblVer  InQ OutQ  Up/Down State/PfxRcd   PfxSnt Desc
+10.0.13.3       4      65003         4         4        0    0    0 00:00:19            1        1 N/A
+
+Total number of neighbors 1
+
+PERMITTED BGP routing table entry for 198.51.100.3/32, version 2
+Paths: (1 available, best #1, table default)
+  Not advertised to any peer
+  65003
+    10.0.13.3 from 10.0.13.3 (10.255.0.3)
+      Origin IGP, metric 0, valid, external, best (First path received)
+      Last update: Fri Nov 13 01:55:23 2026
+
+FORBIDDEN % Network not in table
+
+PING 198.51.100.3 (198.51.100.3) from 10.255.0.1 : 56(84) bytes of data.
+64 bytes from 198.51.100.3: icmp_seq=1 ttl=64 time=0.032 ms
+64 bytes from 198.51.100.3: icmp_seq=2 ttl=64 time=0.021 ms
+64 bytes from 198.51.100.3: icmp_seq=3 ttl=64 time=0.010 ms
+
+--- 198.51.100.3 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2039ms
+rtt min/avg/max/mdev = 0.010/0.021/0.032/0.009 ms
+
+Observed route-poll interval upper bound, seconds: 0.25735046300000164
+PING 10.255.0.3 (10.255.0.3) from 10.255.0.1 : 56(84) bytes of data.
+64 bytes from 10.255.0.3: icmp_seq=1 ttl=64 time=0.010 ms
+64 bytes from 10.255.0.3: icmp_seq=2 ttl=64 time=0.012 ms
+64 bytes from 10.255.0.3: icmp_seq=3 ttl=64 time=0.032 ms
+
+--- 10.255.0.3 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2044ms
+rtt min/avg/max/mdev = 0.010/0.018/0.032/0.009 ms
+
+PASS OSPF alternate/restoration and BGP allow/deny
+/tmp/mc65-gah2cb9z/1/bgpd.log 2026/11/13 01:55:23 BGP: [M59KS-A3ZXZ] bgp_update_receive: rcvd End-of-RIB for IPv4 Unicast from 10.0.13.3 in vrf default
+
+/tmp/mc65-gah2cb9z/1/ospfd.log 2026/11/13 01:55:21 OSPF: [YAF85-253AP][EC 100663299] buffer_flush_available: write error on fd 2: Bad file descriptor
+2026/11/13 01:55:21 OSPF: [YAF85-253AP][EC 100663299] buffer_flush_available: write error on fd 2: Bad file descriptor
+
+/tmp/mc65-gah2cb9z/1/zebra.log 2026/11/13 01:55:21 ZEBRA: [V98V0-MTWPF] client 15 says hello and bids fair to announce only ospf routes vrf=0
+2026/11/13 01:55:21 ZEBRA: [V98V0-MTWPF] client 33 says hello and bids fair to announce only bgp routes vrf=0
+2026/11/13 01:55:21 ZEBRA: [V98V0-MTWPF] client 36 says hello and bids fair to announce only vnc routes vrf=0
+
+/tmp/mc65-gah2cb9z/2/ospfd.log 2026/11/13 01:55:21 OSPF: [YAF85-253AP][EC 100663299] buffer_flush_available: write error on fd 2: Bad file descriptor
+2026/11/13 01:55:21 OSPF: [YAF85-253AP][EC 100663299] buffer_flush_available: write error on fd 2: Bad file descriptor
+2026/11/13 01:55:31 OSPF: [S5PCG-77H23] Packet[DD]: Neighbor 10.255.0.1 Negotiation done (Master).
+
+/tmp/mc65-gah2cb9z/2/zebra.log 2026/11/13 01:55:21 ZEBRA: [V98V0-MTWPF] client 15 says hello and bids fair to announce only ospf routes vrf=0
+
+/tmp/mc65-gah2cb9z/3/bgpd.log 2026/11/13 01:55:23 BGP: [M59KS-A3ZXZ] bgp_update_receive: rcvd End-of-RIB for IPv4 Unicast from 10.0.13.1 in vrf default
+
+/tmp/mc65-gah2cb9z/3/ospfd.log 2026/11/13 01:55:21 OSPF: [YAF85-253AP][EC 100663299] buffer_flush_available: write error on fd 2: Bad file descriptor
+2026/11/13 01:55:21 OSPF: [YAF85-253AP][EC 100663299] buffer_flush_available: write error on fd 2: Bad file descriptor
+2026/11/13 01:55:31 OSPF: [S5PCG-77H23] Packet[DD]: Neighbor 10.255.0.1 Negotiation done (Master).
+2026/11/13 01:55:31 OSPF: [S5PCG-77H23] Packet[DD]: Neighbor 10.255.0.2 Negotiation done (Master).
+2026/11/13 01:55:46 OSPF: [S5PCG-77H23] Packet[DD]: Neighbor 10.255.0.2 Negotiation done (Master).
+
+/tmp/mc65-gah2cb9z/3/zebra.log 2026/11/13 01:55:21 ZEBRA: [V98V0-MTWPF] client 15 says hello and bids fair to announce only ospf routes vrf=0
+2026/11/13 01:55:21 ZEBRA: [V98V0-MTWPF] client 33 says hello and bids fair to announce only bgp routes vrf=0
+2026/11/13 01:55:21 ZEBRA: [V98V0-MTWPF] client 36 says hello and bids fair to announce only vnc routes vrf=0
+
+

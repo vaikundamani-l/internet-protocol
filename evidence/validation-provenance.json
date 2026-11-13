@@ -1,0 +1,10 @@
+{
+  "workflow_run": "https://github.com/vaikundamani-l/internet-protocol/actions/runs/43348384576",
+  "tested_commit": "68895d5526d7113b3f4e9b0837951b40e88c7322",
+  "artifacts": [
+    {"id":14003130832,"name":"course-validation-evidence","zip_sha256":"f3ff88df241fc7450ea657200ac715a91688c5571220b9ad6676cab07bc4826e"},
+    {"id":14003080482,"name":"routing-validation-evidence","zip_sha256":"6d2417ce1eb2aad49aba8f2fe20449666b13fa0c51276cd09b1c7693f3ad3aa2"}
+  ],
+  "retained_files": ["browser-results.json","privileged-results.json","routing-results.txt","../package-lock.json"],
+  "method": "Downloaded artifact ZIPs were SHA-256 verified before extracting only the named reports. Report bytes are unmodified. Browser checks include mobile emulation, not physical-device testing."
+}

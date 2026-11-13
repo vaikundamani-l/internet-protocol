@@ -1,0 +1,21 @@
+{
+  "scope": "Only test-owned p53 namespaces; not host firewall",
+  "checks": [
+    {
+      "name": "multi-router HTTP",
+      "status": "PASS"
+    },
+    {
+      "name": "firewall permits HTTP and denies new ICMP",
+      "status": "PASS"
+    },
+    {
+      "name": "return-route failure and recovery",
+      "status": "PASS"
+    },
+    {
+      "name": "owned namespace cleanup",
+      "status": "PASS"
+    }
+  ]
+}

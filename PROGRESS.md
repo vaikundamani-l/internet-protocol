@@ -15,7 +15,7 @@ The course is published at https://vaikundamani-l.github.io/internet-protocol/.
 
 Run: https://github.com/vaikundamani-l/internet-protocol/actions/runs/43348384576
 
-Browser results are pending final inspection. Update validation.json and VALIDATION.md only from the recorded outcome. Preserve the original observed PCAP and its provenance rather than replacing it with unrelated output.
+All 30 browser checks passed: zero failed, skipped or flaky cases. Both workflow jobs passed. Raw browser, privileged-network and routing reports are now retained under evidence/. validation.json and VALIDATION.md record the tested commit and run. Preserve the original observed PCAP and its provenance rather than replacing it with unrelated output.
 
 ## Boundaries that remain
 

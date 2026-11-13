@@ -1,0 +1,1304 @@
+{
+  "config": {
+    "configFile": "/home/runner/work/internet-protocol/internet-protocol/playwright.config.cjs",
+    "rootDir": "/home/runner/work/internet-protocol/internet-protocol/browser-tests",
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/vaikundamani-l/internet-protocol/commit/68895d5526d7113b3f4e9b0837951b40e88c7322",
+        "commitHash": "68895d5526d7113b3f4e9b0837951b40e88c7322",
+        "buildHref": "https://github.com/vaikundamani-l/internet-protocol/actions/runs/43348384576"
+      },
+      "gitCommit": {
+        "shortHash": "68895d5",
+        "hash": "68895d5526d7113b3f4e9b0837951b40e88c7322",
+        "subject": "Preserve simulation clicks after editing inputs and improve active lesson contrast",
+        "body": "Preserve simulation clicks after editing inputs and improve active lesson contrast",
+        "author": {
+          "name": "Vaikundamani L",
+          "email": "l.vaikundamani@gmail.com",
+          "time": 1794534894000
+        },
+        "committer": {
+          "name": "Vaikundamani L",
+          "email": "l.vaikundamani@gmail.com",
+          "time": 1794534894000
+        },
+        "branch": "main"
+      },
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "quiet": false,
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/internet-protocol/internet-protocol/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/vaikundamani-l/internet-protocol/commit/68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "commitHash": "68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "buildHref": "https://github.com/vaikundamani-l/internet-protocol/actions/runs/43348384576"
+          },
+          "gitCommit": {
+            "shortHash": "68895d5",
+            "hash": "68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "subject": "Preserve simulation clicks after editing inputs and improve active lesson contrast",
+            "body": "Preserve simulation clicks after editing inputs and improve active lesson contrast",
+            "author": {
+              "name": "Vaikundamani L",
+              "email": "l.vaikundamani@gmail.com",
+              "time": 1794534894000
+            },
+            "committer": {
+              "name": "Vaikundamani L",
+              "email": "l.vaikundamani@gmail.com",
+              "time": 1794534894000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 1
+        },
+        "id": "chromium",
+        "name": "chromium",
+        "testDir": "/home/runner/work/internet-protocol/internet-protocol/browser-tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/home/runner/work/internet-protocol/internet-protocol/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/vaikundamani-l/internet-protocol/commit/68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "commitHash": "68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "buildHref": "https://github.com/vaikundamani-l/internet-protocol/actions/runs/43348384576"
+          },
+          "gitCommit": {
+            "shortHash": "68895d5",
+            "hash": "68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "subject": "Preserve simulation clicks after editing inputs and improve active lesson contrast",
+            "body": "Preserve simulation clicks after editing inputs and improve active lesson contrast",
+            "author": {
+              "name": "Vaikundamani L",
+              "email": "l.vaikundamani@gmail.com",
+              "time": 1794534894000
+            },
+            "committer": {
+              "name": "Vaikundamani L",
+              "email": "l.vaikundamani@gmail.com",
+              "time": 1794534894000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 1
+        },
+        "id": "firefox",
+        "name": "firefox",
+        "testDir": "/home/runner/work/internet-protocol/internet-protocol/browser-tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/home/runner/work/internet-protocol/internet-protocol/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/vaikundamani-l/internet-protocol/commit/68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "commitHash": "68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "buildHref": "https://github.com/vaikundamani-l/internet-protocol/actions/runs/43348384576"
+          },
+          "gitCommit": {
+            "shortHash": "68895d5",
+            "hash": "68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "subject": "Preserve simulation clicks after editing inputs and improve active lesson contrast",
+            "body": "Preserve simulation clicks after editing inputs and improve active lesson contrast",
+            "author": {
+              "name": "Vaikundamani L",
+              "email": "l.vaikundamani@gmail.com",
+              "time": 1794534894000
+            },
+            "committer": {
+              "name": "Vaikundamani L",
+              "email": "l.vaikundamani@gmail.com",
+              "time": 1794534894000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 1
+        },
+        "id": "webkit",
+        "name": "webkit",
+        "testDir": "/home/runner/work/internet-protocol/internet-protocol/browser-tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/home/runner/work/internet-protocol/internet-protocol/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/vaikundamani-l/internet-protocol/commit/68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "commitHash": "68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "buildHref": "https://github.com/vaikundamani-l/internet-protocol/actions/runs/43348384576"
+          },
+          "gitCommit": {
+            "shortHash": "68895d5",
+            "hash": "68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "subject": "Preserve simulation clicks after editing inputs and improve active lesson contrast",
+            "body": "Preserve simulation clicks after editing inputs and improve active lesson contrast",
+            "author": {
+              "name": "Vaikundamani L",
+              "email": "l.vaikundamani@gmail.com",
+              "time": 1794534894000
+            },
+            "committer": {
+              "name": "Vaikundamani L",
+              "email": "l.vaikundamani@gmail.com",
+              "time": 1794534894000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 1
+        },
+        "id": "android-emulation",
+        "name": "android-emulation",
+        "testDir": "/home/runner/work/internet-protocol/internet-protocol/browser-tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      },
+      {
+        "outputDir": "/home/runner/work/internet-protocol/internet-protocol/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/vaikundamani-l/internet-protocol/commit/68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "commitHash": "68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "buildHref": "https://github.com/vaikundamani-l/internet-protocol/actions/runs/43348384576"
+          },
+          "gitCommit": {
+            "shortHash": "68895d5",
+            "hash": "68895d5526d7113b3f4e9b0837951b40e88c7322",
+            "subject": "Preserve simulation clicks after editing inputs and improve active lesson contrast",
+            "body": "Preserve simulation clicks after editing inputs and improve active lesson contrast",
+            "author": {
+              "name": "Vaikundamani L",
+              "email": "l.vaikundamani@gmail.com",
+              "time": 1794534894000
+            },
+            "committer": {
+              "name": "Vaikundamani L",
+              "email": "l.vaikundamani@gmail.com",
+              "time": 1794534894000
+            },
+            "branch": "main"
+          },
+          "actualWorkers": 1
+        },
+        "id": "ios-emulation",
+        "name": "ios-emulation",
+        "testDir": "/home/runner/work/internet-protocol/internet-protocol/browser-tests",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 45000
+      }
+    ],
+    "shard": null,
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.56.1",
+    "workers": 1,
+    "webServer": {
+      "command": "python3 -m http.server 8000 --bind 127.0.0.1",
+      "url": "http://127.0.0.1:8000",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "course.spec.cjs",
+      "file": "course.spec.cjs",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "actual crypto roundtrip and tamper rejection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 498,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:14.038Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-08b35f81b966942d9f28",
+          "file": "course.spec.cjs",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "language persists, deep lesson, model, notes and responsive overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 884,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:14.747Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-d1b3e0cc3c91f4962f4b",
+          "file": "course.spec.cjs",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "graded challenge and final exam prevent unanswered submission",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 474,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:15.647Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-2e7e69a7f575ee7e39d2",
+          "file": "course.spec.cjs",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "numeric model recomputes and invalid input recovers",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 551,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:16.141Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-c989e77063c55b678639",
+          "file": "course.spec.cjs",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "offline cached lesson loads after initial installation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 720,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:16.705Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-bdf8a5e4b3dbf67b8b64",
+          "file": "course.spec.cjs",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "keyboard tabs and automated accessibility in both languages",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "chromium",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2553,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:17.439Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-b9ac1cfcdaddc5746823",
+          "file": "course.spec.cjs",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "actual crypto roundtrip and tamper rejection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1471,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:20.629Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-2df6f37a8621fcf0536d",
+          "file": "course.spec.cjs",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "language persists, deep lesson, model, notes and responsive overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1254,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:22.520Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-529c6fb845b1d8c2a2a1",
+          "file": "course.spec.cjs",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "graded challenge and final exam prevent unanswered submission",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 679,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:23.788Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-21e8d893ca34b83ff6bc",
+          "file": "course.spec.cjs",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "numeric model recomputes and invalid input recovers",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 642,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:24.493Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-d3434327a6bd1d35e2d4",
+          "file": "course.spec.cjs",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "offline cached lesson loads after initial installation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 623,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:25.154Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-bf6471461c752d5d36b8",
+          "file": "course.spec.cjs",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "keyboard tabs and automated accessibility in both languages",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "firefox",
+              "projectName": "firefox",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3025,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:25.791Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-e75af320fdb6b635be57",
+          "file": "course.spec.cjs",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "actual crypto roundtrip and tamper rejection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3624,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:30.003Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-bc2e20ba05e072f984a7",
+          "file": "course.spec.cjs",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "language persists, deep lesson, model, notes and responsive overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2045,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:34.080Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-508c11caf591e26d5f34",
+          "file": "course.spec.cjs",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "graded challenge and final exam prevent unanswered submission",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1218,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:36.145Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-c47ca01b313020e643cd",
+          "file": "course.spec.cjs",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "numeric model recomputes and invalid input recovers",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1118,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:37.376Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-fcd61459687c5035b435",
+          "file": "course.spec.cjs",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "offline cached lesson loads after initial installation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1014,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:38.512Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-d45cd4ff641abbda2236",
+          "file": "course.spec.cjs",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "keyboard tabs and automated accessibility in both languages",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "webkit",
+              "projectName": "webkit",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 4296,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:39.544Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-128256ad2562f4dbc64c",
+          "file": "course.spec.cjs",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "actual crypto roundtrip and tamper rejection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "android-emulation",
+              "projectName": "android-emulation",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1182,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:44.553Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-0cce52e118006113a879",
+          "file": "course.spec.cjs",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "language persists, deep lesson, model, notes and responsive overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "android-emulation",
+              "projectName": "android-emulation",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 814,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:45.817Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-9eb043e94b19ccaf3106",
+          "file": "course.spec.cjs",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "graded challenge and final exam prevent unanswered submission",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "android-emulation",
+              "projectName": "android-emulation",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 490,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:46.641Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-f98f42e67d8195303b5d",
+          "file": "course.spec.cjs",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "numeric model recomputes and invalid input recovers",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "android-emulation",
+              "projectName": "android-emulation",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 516,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:47.144Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-5160032b9616abafd96b",
+          "file": "course.spec.cjs",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "offline cached lesson loads after initial installation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "android-emulation",
+              "projectName": "android-emulation",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 453,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:47.670Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-9ac46d71d555db572bb3",
+          "file": "course.spec.cjs",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "keyboard tabs and automated accessibility in both languages",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "android-emulation",
+              "projectName": "android-emulation",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1918,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:48.135Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-949ff0828cd9a927fb85",
+          "file": "course.spec.cjs",
+          "line": 26,
+          "column": 1
+        },
+        {
+          "title": "actual crypto roundtrip and tamper rejection",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "ios-emulation",
+              "projectName": "ios-emulation",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1268,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:50.689Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-c4dcc046b0f89d6131ce",
+          "file": "course.spec.cjs",
+          "line": 3,
+          "column": 1
+        },
+        {
+          "title": "language persists, deep lesson, model, notes and responsive overflow",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "ios-emulation",
+              "projectName": "ios-emulation",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2082,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:52.051Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-4a766122c377082f1d6c",
+          "file": "course.spec.cjs",
+          "line": 6,
+          "column": 1
+        },
+        {
+          "title": "graded challenge and final exam prevent unanswered submission",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "ios-emulation",
+              "projectName": "ios-emulation",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1125,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:54.146Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-35e46ee473cf5033e2ac",
+          "file": "course.spec.cjs",
+          "line": 14,
+          "column": 1
+        },
+        {
+          "title": "numeric model recomputes and invalid input recovers",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "ios-emulation",
+              "projectName": "ios-emulation",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1085,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:55.296Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-10eadcd03d48a586536d",
+          "file": "course.spec.cjs",
+          "line": 18,
+          "column": 1
+        },
+        {
+          "title": "offline cached lesson loads after initial installation",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "ios-emulation",
+              "projectName": "ios-emulation",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 861,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:56.397Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-d07d534057863c5f19e3",
+          "file": "course.spec.cjs",
+          "line": 22,
+          "column": 1
+        },
+        {
+          "title": "keyboard tabs and automated accessibility in both languages",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 45000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "ios-emulation",
+              "projectName": "ios-emulation",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3717,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-11-13T01:56:57.274Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "c5708f5047920664ded2-2002230b19ee44e2aa61",
+          "file": "course.spec.cjs",
+          "line": 26,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-11-13T01:56:13.206Z",
+    "duration": 47911.941,
+    "expected": 30,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}
