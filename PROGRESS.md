@@ -13,7 +13,7 @@ The course is published at https://vaikundamani-l.github.io/internet-protocol/.
 
 ## Lesson-depth editorial pass
 
-- Chapters 31–32 now have extended bilingual theory, worked calculations, troubleshooting investigations and solved exercises in the local completion batch.
+- Chapters 31–33 now have extended bilingual theory, worked calculations, troubleshooting investigations and solved exercises.
 - `tests-depth.cjs` enforces the structure, Tamil pairing and minimum instructional depth for every added supplement.
 - The exact chapter-by-chapter status is maintained in `LESSON_DEPTH.md`; chapters not listed as complete there remain pending.
 
