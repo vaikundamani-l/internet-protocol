@@ -187,7 +187,7 @@ PY`,guidance:{en:'Run without sudo. The fixture uses separate ephemeral loopback
     failure:{en:'OSPF is Full but the destination is unreachable: inspect the exact prefix in LSDB, FRR RIB and kernel FIB, then verify the return path. BGP Established with no accepted service route can be correct filtering or missing origination; compare the sender network statement, connected route and receiver policy before changing timers.',ta:'OSPF Full இருந்தும் destination அடைய முடியாவிட்டால் exact prefix-ஐ LSDB,FRR RIB,kernel FIB-ல் பார்த்து return path சரிபார்க்கவும். BGP Established இருந்தும் accepted service route இல்லாதது சரியான filtering அல்லது missing origination ஆகலாம்; timers மாற்றுமுன் sender network statement,connected route,receiver policy ஒப்பிடுங்கள்.'},
     lab:{commands:String.raw`# Disposable Linux VM only; preinstalled FRR 8.4.x required.
 sudo python3 - <<'PY'
-import os, pathlib, shutil, subprocess, tempfile, time, uuid, json
+import os, pathlib, shutil, subprocess, tempfile, time, uuid, json, pwd, grp
 assert os.geteuid()==0, 'root required in disposable VM'
 def run(*args,check=True):
     p=subprocess.run(list(args),text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,timeout=15)
@@ -200,6 +200,7 @@ for d,p in daemons.items(): assert pathlib.Path(p).is_file(),p
 version=run(daemons['bgpd'],'--version'); print(version)
 assert '8.4.' in version, 'This recipe targets FRR 8.4.x'
 root=pathlib.Path(tempfile.mkdtemp(prefix='mc65-')); root.chmod(0o755)
+frr_uid=pwd.getpwnam('frr').pw_uid; frr_gid=grp.getgrnam('frr').gr_gid
 tag='m65'+uuid.uuid4().hex[:6]
 ns={i:tag+'r'+str(i) for i in (1,2,3)}; created=[]
 def inside(i,*args,check=True): return run('ip','netns','exec',ns[i],*args,check=check)
@@ -223,6 +224,7 @@ try:
         inside(i,'ip','addr','add','10.255.0.'+str(i)+'/32','dev','lo')
         inside(i,'sysctl','-qw','net.ipv4.ip_forward=1')
         directory=root/str(i); directory.mkdir(); directory.chmod(0o755)
+        os.chown(directory,frr_uid,frr_gid)
     # No host endpoints or physical links are attached.
     for a,b,net in ((1,2,12),(2,3,23),(1,3,13)):
         # Create veth inside a namespace: temporary names never touch host links.
@@ -263,7 +265,7 @@ try:
             configs['bgpd']=bgp
         for daemon,config in configs.items():
             conf=directory/(daemon+'.conf'); conf.write_text(config); conf.chmod(0o644)
-            inside(i,daemons[daemon],'-d','-u','root','-g','root','-f',str(conf),
+            inside(i,daemons[daemon],'-d','-u','frr','-g','frr','-f',str(conf),
                 '-i',str(directory/(daemon+'.pid')),'-z',str(directory/'zserv.api'),
                 '--vty_socket',str(directory))
             wait(lambda i=i,daemon=daemon:(root/str(i)/(daemon+'.vty')).exists(),daemon+' socket')
