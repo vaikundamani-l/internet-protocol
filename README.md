@@ -23,7 +23,8 @@ Open **Settings → Course language → தமிழ் / English**. The choice 
 ## Learn and experiment
 
 - Prerequisites, objectives, explanatory sections, worked examples, failure diagnosis, labs and primary sources in each chapter.
-- A validated lesson-depth supplement is being added chapter by chapter. Chapters 31–38 currently include extended bilingual theory, two multi-step worked cases, two evidence-led troubleshooting cases and three solved exercises each; see [LESSON_DEPTH.md](LESSON_DEPTH.md) for the exact ledger.
+- A validated lesson-depth supplement is being added chapter by chapter. Chapters 31–39 currently include extended bilingual theory, two multi-step worked cases, two evidence-led troubleshooting cases and three solved exercises each; see [LESSON_DEPTH.md](LESSON_DEPTH.md) for the exact ledger.
+- The Chapter 39 multicast animation is state-driven: it exposes receiver membership, ASM/SSM tree identity, RPF interface decisions and application delivery fields instead of using a decorative packet-only sequence.
 - Change loss, cache, routing, queue, MTU, certificate, policy and timing inputs; inspect computed state and event traces.
 - Bit-level IPv4 calculator, RTO equations, Dijkstra graph, BGP policy, NTP timing, VXLAN overhead and other focused models.
 - Download synthetic PCAPs/annotated CSVs for ARP, DNS and TCP. These are locally generated teaching fixtures, not live captures.

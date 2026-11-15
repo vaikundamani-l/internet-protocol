@@ -13,6 +13,8 @@ assert(Math.abs(MODEL.cubic.compute({wmax:100,seconds:1}).events[0].state.target
 assert.equal(MODEL.bbr.compute({bandwidth:100,rtt:40,gain:125}).events[0].state.estimatedBDPBytes,500000);
 assert.equal(MODEL['flow-control'].compute({cwnd:8000,rwnd:6000,flight:4500}).events.at(-1).state.newDataBudget,1500);
 assert.equal(MODEL['flow-control'].compute({cwnd:8000,rwnd:0,flight:0}).events.at(-1).state.newDataBudget,0);
+for(const join of [true,false])for(const route of [true,false])for(const rpf of [true,false]){const r=MODEL.multicast.compute({join,route,rpf,ssm:true}),delivered=join&&route&&rpf;assert.equal(r.events.at(-1).state.delivered,delivered);assert.equal(r.metrics[0][1],'(192.0.2.10, 232.1.1.1)');if(!rpf&&join&&route)assert(r.events.some(e=>e.state.RPF==='FAIL'&&e.drop));}
+assert.equal(MODEL.multicast.compute({join:true,route:true,rpf:true,ssm:false}).metrics[0][1],'(*, 239.1.1.1)');
 for(const a of APPLIED){assert(!Learning.grade(a.id,'wrong'));assert(Learning.grade(a.id,a.answer));}assert.equal(Object.keys(Learning.export().applied).length,12);
 assert.throws(()=>Learning.validate({...Learning.export(),reviews:{999:{due:0,interval:1}}}));
 const before=JSON.stringify(Learning.export());assert.throws(()=>run('validateBackup({version:2,completed:[],bookmarks:[],notes:{},scores:{},training:{version:999}})'));assert.equal(JSON.stringify(Learning.export()),before);
