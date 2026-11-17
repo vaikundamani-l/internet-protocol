@@ -13,8 +13,9 @@ The course is published at https://vaikundamani-l.github.io/internet-protocol/.
 
 ## Lesson-depth editorial pass
 
-- Chapters 31–39 now have extended bilingual theory, worked calculations, troubleshooting investigations and solved exercises.
+- Chapters 31–40 now have extended bilingual theory, worked calculations, troubleshooting investigations and solved exercises.
 - Chapter 39's multicast model now traces receiver membership, ASM/SSM tree state, RPF acceptance and downstream delivery with actual `(S,G)`, IP, UDP-port and interface state rather than a two-step availability diagram.
+- Chapter 40's MPLS model now traces a two-label L3VPN packet through VRF classification, label push/swap/PHP, Route Target import and delivery/drop state, including stack bits and overhead.
 - `tests-depth.cjs` enforces the structure, Tamil pairing and minimum instructional depth for every added supplement.
 - The exact chapter-by-chapter status is maintained in `LESSON_DEPTH.md`; chapters not listed as complete there remain pending.
 
