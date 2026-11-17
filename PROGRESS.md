@@ -18,6 +18,7 @@ The course is published at https://vaikundamani-l.github.io/internet-protocol/.
 - Chapter 40's MPLS model now traces a two-label L3VPN packet through VRF classification, label push/swap/PHP, Route Target import and delivery/drop state, including stack bits and overhead.
 - Chapter 41's DNS model now traces stub transport, cache branching, parent referral/glue, child authority, DNSSEC SECURE/INSECURE/BOGUS outcomes and authenticated positive or negative delivery.
 - Chapter 42's browser-protocol model now traces cookie selection, CORS preflight/actual response gates and WebSocket Origin/session/upgrade/masking/message-authorization branches with concrete fields and close codes.
+- The Chapter 42 CORS regression test now requires a failed preflight Origin check to stop the actual credentialed request; method/header permission alone can no longer produce a false `actualSent` state.
 - `tests-depth.cjs` enforces the structure, Tamil pairing and minimum instructional depth for every added supplement.
 - The exact chapter-by-chapter status is maintained in `LESSON_DEPTH.md`; chapters not listed as complete there remain pending.
 
