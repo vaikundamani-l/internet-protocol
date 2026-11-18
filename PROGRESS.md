@@ -13,13 +13,14 @@ The course is published at https://vaikundamani-l.github.io/internet-protocol/.
 
 ## Lesson-depth editorial pass
 
-- Chapters 31–43 now have extended bilingual theory, worked calculations, troubleshooting investigations and solved exercises.
+- Chapters 31–44 now have extended bilingual theory, worked calculations, troubleshooting investigations and solved exercises.
 - Chapter 39's multicast model now traces receiver membership, ASM/SSM tree state, RPF acceptance and downstream delivery with actual `(S,G)`, IP, UDP-port and interface state rather than a two-step availability diagram.
 - Chapter 40's MPLS model now traces a two-label L3VPN packet through VRF classification, label push/swap/PHP, Route Target import and delivery/drop state, including stack bits and overhead.
 - Chapter 41's DNS model now traces stub transport, cache branching, parent referral/glue, child authority, DNSSEC SECURE/INSECURE/BOGUS outcomes and authenticated positive or negative delivery.
 - Chapter 42's browser-protocol model now traces cookie selection, CORS preflight/actual response gates and WebSocket Origin/session/upgrade/masking/message-authorization branches with concrete fields and close codes.
 - The Chapter 42 CORS regression test now requires a failed preflight Origin check to stop the actual credentialed request; method/header permission alone can no longer produce a false `actualSent` state.
 - Chapter 43 now separates PKIX path validation, RFC 9525 service identity, CertificateVerify/Finished transcript proofs, PSK+DHE resumption and 0-RTT replay; its model includes full/resumed fields, timing, HTTP 425 retry and duplicate-effect failure state.
+- Chapter 44 now traces EVPN route import into VXLAN forwarding, exact inner/outer headers, VNI 5000, UDP/4789, per-hop outer Layer-2 rewrite, TTL change and decapsulation. Its model exposes distinct RT-import and MTU failure gates, while the lesson adds Type 2/Type 3, BUM, mobility, multihoming and SDN reconciliation depth.
 - `tests-depth.cjs` enforces the structure, Tamil pairing and minimum instructional depth for every added supplement.
 - The exact chapter-by-chapter status is maintained in `LESSON_DEPTH.md`; chapters not listed as complete there remain pending.
 
