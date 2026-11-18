@@ -3,6 +3,12 @@ const AxeBuilder=require('@axe-core/playwright').default;
 test('actual crypto roundtrip and tamper rejection',async({page})=>{
  await page.goto('/#lesson-43');await page.locator('#tab-simulation').click();await page.locator('#crypto-run').click();await expect(page.locator('#crypto-result')).toContainText('Changed ciphertext was rejected');await expect(page.locator('#crypto-result')).not.toContainText('FAIL');await expect(page.locator('#crypto-result td').filter({hasText:'PASS'})).toHaveCount(3);
 });
+test('TLS journey exposes 0-RTT replay and 425 retry branches',async({page})=>{
+ await page.goto('/#lesson-43');await page.locator('#tab-simulation').click();
+ await page.locator('#control-mode').selectOption('resume');await page.locator('#control-early').check();await page.locator('#control-safe').uncheck();
+ await page.locator('[data-event="3"]').click();await expect(page.locator('#stateTable')).toContainText('0_RTT_REPLAY');await expect(page.locator('#stateTable')).toContainText('2');
+ await page.locator('#control-accept').uncheck();await expect(page.locator('#eventTrace')).toContainText('425');await page.locator('[data-event="3"]').click();await expect(page.locator('#stateTable')).toContainText('retriedAfter425');await expect(page.locator('#stateTable')).toContainText('1');
+});
 test('language persists, deep lesson, model, notes and responsive overflow',async({page})=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/#settings');await page.locator('#language').selectOption('ta');await page.reload();await expect(page.locator('html')).toHaveAttribute('lang','ta');
