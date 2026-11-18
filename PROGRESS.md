@@ -22,6 +22,7 @@ The course is published at https://vaikundamani-l.github.io/internet-protocol/.
 - Chapter 43 now separates PKIX path validation, RFC 9525 service identity, CertificateVerify/Finished transcript proofs, PSK+DHE resumption and 0-RTT replay; its model includes full/resumed fields, timing, HTTP 425 retry and duplicate-effect failure state.
 - Chapter 44 now traces EVPN route import into VXLAN forwarding, exact inner/outer headers, VNI 5000, UDP/4789, per-hop outer Layer-2 rewrite, TTL change and decapsulation. Its model exposes distinct RT-import and MTU failure gates, while the lesson adds Type 2/Type 3, BUM, mobility, multihoming and SDN reconciliation depth.
 - Chapter 44 follow-up QA corrected the EVPN advertisement and final decapsulation arrow directions and added chapter-specific Tamil, reduced-motion, mobile-overflow and accessibility browser checks.
+- Chapter 44 references now include the primary ONF SDN Architecture 1.1 source for its SDN control/forwarding claims.
 - `tests-depth.cjs` enforces the structure, Tamil pairing and minimum instructional depth for every added supplement.
 - The exact chapter-by-chapter status is maintained in `LESSON_DEPTH.md`; chapters not listed as complete there remain pending.
 
