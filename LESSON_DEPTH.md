@@ -10,6 +10,8 @@ The base course still contains all 65 bilingual chapters. A chapter is marked **
 | --- | --- | --- | --- |
 | 31–44 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS and VXLAN/EVPN/SDN engineering | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
 
+Chapter 44's follow-up audit verified the depth contract and corrected the visualization so the EVPN Type 2 advertisement travels from the remote VTEP to the ingress VTEP and final decapsulation terminates at the remote VTEP/host. Reduced-motion, Tamil narration, mobile overflow and accessibility now have chapter-specific browser regression coverage.
+
 ## Remaining editorial pass
 
 | Chapters | Status |

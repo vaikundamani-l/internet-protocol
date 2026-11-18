@@ -10,10 +10,12 @@ test('TLS journey exposes 0-RTT replay and 425 retry branches',async({page})=>{
  await page.locator('#control-accept').uncheck();await expect(page.locator('#eventTrace')).toContainText('425');await page.locator('[data-event="3"]').click();await expect(page.locator('#stateTable')).toContainText('retriedAfter425');await expect(page.locator('#stateTable')).toContainText('1');
 });
 test('VXLAN journey exposes EVPN import, MTU and successful decapsulation branches',async({page})=>{
- await page.goto('/#lesson-44');await page.locator('#tab-simulation').click();
+ await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/#lesson-44');await page.locator('#tab-simulation').click();await expect(page.locator('#visual animateMotion')).toHaveCount(0);
  await page.locator('#control-route').uncheck();await page.locator('[data-event="1"]').click();await expect(page.locator('#stateTable')).toContainText('EVPN_RT_IMPORT');await expect(page.locator('#stateTable')).toContainText('false');
  await page.locator('#control-route').check();await page.locator('#control-tagged').check();await page.locator('#control-underlay').fill('1500');await page.locator('[data-event="2"]').click();await expect(page.locator('#stateTable')).toContainText('UNDERLAY_MTU');await expect(page.locator('#stateTable')).toContainText('1554');
  await page.locator('#control-underlay').fill('1600');await page.locator('[data-event="3"]').click();await expect(page.locator('#stateTable')).toContainText('decapsulated');await expect(page.locator('#stateTable')).toContainText('02:00:00:00:02:14');
+ await page.locator('#quickLanguage').click();await expect(page.locator('html')).toHaveAttribute('lang','ta');await expect(page.locator('#stepTitle')).toContainText(/[஀-௿]/);await expect(page.locator('#stateTable')).toContainText('02:00:00:00:02:14');
+ await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();const results=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(results.violations.filter(v=>['critical','serious'].includes(v.impact))).toEqual([]);
 });
 test('language persists, deep lesson, model, notes and responsive overflow',async({page})=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
