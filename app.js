@@ -9,7 +9,7 @@ const arr=k=>{const a=read(k,[]);return Array.isArray(a)?a.filter(validId).map(N
 let completed=new Set(arr('atlas-completed')),bookmarks=new Set(arr('atlas-bookmarks')),notes=read('atlas-notes',{}),scores=read('atlas-scores',{});
 if(!notes||Array.isArray(notes)||typeof notes!=='object')notes={};if(!scores||Array.isArray(scores)||typeof scores!=='object')scores={};
 let current=null,selectedTab='learn',simKey='tcp',simParams={},simData=null,step=0,timer=null,quizAnswers={},search='',clearPending=false,offlineState='offlinePending';
-const overrides={31:'subnet',32:'wifi',33:'stp',34:'nat64',35:'rto',36:'congestion',37:'ospf',39:'multicast',40:'mpls',44:'vxlan',46:'kubernetes',48:'telemetry',55:'ssh',56:'mail',57:'ntp',58:'telemetry',59:'rtc',60:'discovery',61:'tunnel',62:'ftp',63:'flow-control',64:'dnssec',65:'ospf'},modelFor=l=>overrides[l.id]||l.model||'encapsulation';
+const overrides={31:'subnet',32:'wifi',33:'stp',34:'nat64',35:'rto',36:'congestion',37:'ospf',39:'multicast',40:'mpls',44:'vxlan',45:'vpc',46:'kubernetes',48:'telemetry',55:'ssh',56:'mail',57:'ntp',58:'telemetry',59:'rtc',60:'discovery',61:'tunnel',62:'ftp',63:'flow-control',64:'dnssec',65:'ospf'},modelFor=l=>overrides[l.id]||l.model||'encapsulation';
 function notify(message){const el=$('#notice');el.textContent=message;el.hidden=false;clearTimeout(notify.timer);notify.timer=setTimeout(()=>el.hidden=true,4500);}
 function stop(){clearInterval(timer);timer=null;if($('#play'))$('#play').textContent='▶ '+t('play');}
 function persist(){save('atlas-completed',[...completed]);save('atlas-bookmarks',[...bookmarks]);save('atlas-notes',notes);save('atlas-scores',scores);}

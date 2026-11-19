@@ -17,6 +17,15 @@ test('VXLAN journey exposes EVPN import, MTU and successful decapsulation branch
  await page.locator('#quickLanguage').click();await expect(page.locator('html')).toHaveAttribute('lang','ta');await expect(page.locator('#stepTitle')).toContainText(/[஀-௿]/);await expect(page.locator('#stateTable')).toContainText('02:00:00:00:02:14');
  await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();const results=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(results.violations.filter(v=>['critical','serious'].includes(v.impact))).toEqual([]);
 });
+test('VPC journey separates health, listener, backend and return-path failures',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/#lesson-45');await page.locator('#tab-simulation').click();await expect(page.locator('#visual animateMotion')).toHaveCount(0);
+ await page.locator('#control-health').uncheck();await page.locator('[data-event="1"]').click();await expect(page.locator('#stateTable')).toContainText('TARGET_HEALTH');await expect(page.locator('#stateTable')).toContainText('documentedFailOpenRisk');
+ await page.locator('#control-health').check();await page.locator('#control-backend').uncheck();await page.locator('[data-event="3"]').click();await expect(page.locator('#stateTable')).toContainText('BACKEND_ROUTE_POLICY_OR_LISTENER');await expect(page.locator('#stateTable')).toContainText('true');
+ await page.locator('#control-backend').check();await page.locator('#control-returnAcl').uncheck();await page.locator('[data-event="4"]').click();await expect(page.locator('#stateTable')).toContainText('STATELESS_RETURN_ACL');await expect(page.locator('#stateTable')).toContainText('41000');await expect(page.locator('#stateTable')).toContainText('53000');
+ await page.locator('#control-returnAcl').check();await page.locator('[data-event="5"]').click();await expect(page.locator('#stateTable')).toContainText('10.0.2.7:8080→10.0.1.10:41000');await expect(page.locator('#stateTable')).toContainText('203.0.113.10:443→198.51.100.20:53000');
+ await page.locator('#quickLanguage').click();await expect(page.locator('html')).toHaveAttribute('lang','ta');await expect(page.locator('#stepTitle')).toContainText(/[஀-௿]/);await expect(page.locator('#stateTable')).toContainText('10.0.1.10:32000→10.0.2.7:8080');
+ await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();const results=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(results.violations.filter(v=>['critical','serious'].includes(v.impact))).toEqual([]);
+});
 test('language persists, deep lesson, model, notes and responsive overflow',async({page})=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/#settings');await page.locator('#language').selectOption('ta');await page.reload();await expect(page.locator('html')).toHaveAttribute('lang','ta');
