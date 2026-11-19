@@ -14,7 +14,7 @@ Chapter 44's follow-up audit verified the depth contract and corrected the visua
 
 Chapter 45 now separates route, Security Group, Network ACL, listener, target and application gates. Its visualization traces independent health, client and backend connections with real tuples, TLS termination, Layer-2 transit effects and distinct front-route, front-policy, backend and stateless-return failures.
 
-Chapter 46 now separates Service DNS, ClusterIP identity, EndpointSlice readiness, targetPort translation, independent egress/ingress NetworkPolicy decisions and the CNI data path. Its declared VXLAN visualization traces DNAT, real inner/outer tuples, tunnel overhead, router Layer-2 rewrite and TTL change, decapsulation, the reverse response, and distinct DNS, endpoint, policy and MTU failures.
+Chapter 46 now separates Service DNS, ClusterIP identity, EndpointSlice readiness, targetPort translation, independent egress/ingress NetworkPolicy decisions and the CNI data path. Its declared VXLAN visualization traces DNAT, real inner/outer tuples, DF-aware tunnel overhead, distinct Node/underlay-router hops, forward and reverse Layer-2 rewrites and TTL changes, decapsulation, reverse NAT, and distinct DNS, endpoint, policy and MTU/ICMP failures. The policy gates are explicitly logical requirements rather than a claimed implementation evaluation order.
 
 ## Remaining editorial pass
 

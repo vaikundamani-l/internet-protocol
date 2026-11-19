@@ -31,7 +31,7 @@ Open **Settings → Course language → தமிழ் / English**. The choice 
 - The Chapter 43 TLS animation traces a full certificate flight, SAN/path/transcript gates, PSK+DHE resumption, 0-RTT acceptance or HTTP 425 retry, and an observable unsafe replay branch.
 - The Chapter 44 VXLAN animation now joins EVPN Type 2 import state to real VNI, MAC, UDP/4789 and outer-IP fields, shows router outer Layer-2 rewrite/TTL change, and branches visibly at RT-import and MTU failure gates before decapsulation.
 - The Chapter 45 VPC animation separates the ALB health probe, client TLS connection and backend HTTP connection; it exposes concrete addresses and ports, route/policy/listener gates, Layer-2 transit changes and stateless ephemeral-port return failures.
-- The Chapter 46 Kubernetes animation traces Service DNS, ClusterIP-to-targetPort translation, EndpointSlice readiness, both NetworkPolicy directions, VXLAN VNI/headers and MTU, underlay Layer-2 rewrite, decapsulation and the reverse response, with each failure gate observable.
+- The Chapter 46 Kubernetes animation traces Service DNS, ClusterIP-to-targetPort translation, EndpointSlice readiness, both logical NetworkPolicy directions, VXLAN VNI/headers and DF-aware MTU, distinct router/Node B transformations, reverse encapsulation and reverse NAT, with each failure gate observable.
 - Change loss, cache, routing, queue, MTU, certificate, policy and timing inputs; inspect computed state and event traces.
 - Bit-level IPv4 calculator, RTO equations, Dijkstra graph, BGP policy, NTP timing, VXLAN overhead and other focused models.
 - Download synthetic PCAPs/annotated CSVs for ARP, DNS and TCP. These are locally generated teaching fixtures, not live captures.
