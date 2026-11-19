@@ -26,6 +26,17 @@ test('VPC journey separates health, listener, backend and return-path failures',
  await page.locator('#quickLanguage').click();await expect(page.locator('html')).toHaveAttribute('lang','ta');await expect(page.locator('#stepTitle')).toContainText(/[஀-௿]/);await expect(page.locator('#stateTable')).toContainText('10.0.1.10:32000→10.0.2.7:8080');
  await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();const results=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(results.violations.filter(v=>['critical','serious'].includes(v.impact))).toEqual([]);
 });
+test('Kubernetes journey exposes DNS, endpoint, policy, VXLAN and MTU gates',async({page})=>{
+ await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/#lesson-46');await page.locator('#tab-simulation').click();await expect(page.locator('#visual animateMotion')).toHaveCount(0);
+ await page.locator('#control-dns').uncheck();await page.locator('#eventTrace button').last().click();await expect(page.locator('#stateTable')).toContainText('DNS_POLICY');await expect(page.locator('#stateTable')).toContainText('serviceSynSent');
+ await page.locator('#control-dns').check();await page.locator('#control-ready').uncheck();await page.locator('#eventTrace button').last().click();await expect(page.locator('#stateTable')).toContainText('NO_READY_ENDPOINT');await expect(page.locator('#stateTable')).toContainText('10.96.0.25');
+ await page.locator('#control-ready').check();await page.locator('#control-egress').uncheck();await page.locator('#eventTrace button').last().click();await expect(page.locator('#stateTable')).toContainText('SOURCE_EGRESS_POLICY');
+ await page.locator('#control-egress').check();await page.locator('#control-ingress').uncheck();await page.locator('#eventTrace button').last().click();await expect(page.locator('#stateTable')).toContainText('DESTINATION_INGRESS_POLICY');
+ await page.locator('#control-ingress').check();await page.locator('#control-underlay').fill('1499');await page.locator('#eventTrace button').last().click();await expect(page.locator('#stateTable')).toContainText('OVERLAY_MTU');await expect(page.locator('#stateTable')).toContainText('1500');
+ await page.locator('#control-underlay').fill('1500');await page.locator('#eventTrace button').last().click();await expect(page.locator('#stateTable')).toContainText('10.244.2.17:8080→10.244.1.8:51000');await expect(page.locator('#stateTable')).toContainText('192.0.2.12→192.0.2.11');
+ await page.locator('#quickLanguage').click();await expect(page.locator('html')).toHaveAttribute('lang','ta');await expect(page.locator('#stepTitle')).toContainText(/[஀-௿]/);await expect(page.locator('#stateTable')).toContainText('10.244.1.8:53000→10.96.0.10:53');
+ await page.setViewportSize({width:390,height:844});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1)).toBeTruthy();const results=await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(results.violations.filter(v=>['critical','serious'].includes(v.impact))).toEqual([]);
+});
 test('language persists, deep lesson, model, notes and responsive overflow',async({page})=>{
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('/#settings');await page.locator('#language').selectOption('ta');await page.reload();await expect(page.locator('html')).toHaveAttribute('lang','ta');

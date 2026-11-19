@@ -8,17 +8,19 @@ The base course still contains all 65 bilingual chapters. A chapter is marked **
 
 | Chapters | Subject | Added depth per chapter | Status |
 | --- | --- | --- | --- |
-| 31–45 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN and cloud VPC/load-balancer engineering | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
+| 31–46 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer and Kubernetes Service/CNI/NetworkPolicy engineering | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
 
 Chapter 44's follow-up audit verified the depth contract and corrected the visualization so the EVPN Type 2 advertisement travels from the remote VTEP to the ingress VTEP and final decapsulation terminates at the remote VTEP/host. Reduced-motion, Tamil narration, mobile overflow and accessibility now have chapter-specific browser regression coverage.
 
 Chapter 45 now separates route, Security Group, Network ACL, listener, target and application gates. Its visualization traces independent health, client and backend connections with real tuples, TLS termination, Layer-2 transit effects and distinct front-route, front-policy, backend and stateless-return failures.
 
+Chapter 46 now separates Service DNS, ClusterIP identity, EndpointSlice readiness, targetPort translation, independent egress/ingress NetworkPolicy decisions and the CNI data path. Its declared VXLAN visualization traces DNAT, real inner/outer tuples, tunnel overhead, router Layer-2 rewrite and TTL change, decapsulation, the reverse response, and distinct DNS, endpoint, policy and MTU failures.
+
 ## Remaining editorial pass
 
 | Chapters | Status |
 | --- | --- |
-| 46–48 | Advanced networking depth pass pending |
+| 47–48 | Advanced networking depth pass pending |
 | 49–54 | Guided-project lesson depth pass pending |
 | 55–62 | Service-protocol depth pass pending |
 | 63–65 | Capstone/review depth pass pending |
