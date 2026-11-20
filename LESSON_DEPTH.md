@@ -8,7 +8,7 @@ The base course still contains all 65 bilingual chapters. A chapter is marked **
 
 | Chapters | Subject | Added depth per chapter | Status |
 | --- | --- | --- | --- |
-| 31–46 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer and Kubernetes Service/CNI/NetworkPolicy engineering | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
+| 31–47 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes and mobile/satellite/constrained-IoT engineering | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
 
 Chapter 44's follow-up audit verified the depth contract and corrected the visualization so the EVPN Type 2 advertisement travels from the remote VTEP to the ingress VTEP and final decapsulation terminates at the remote VTEP/host. Reduced-motion, Tamil narration, mobile overflow and accessibility now have chapter-specific browser regression coverage.
 
@@ -16,11 +16,13 @@ Chapter 45 now separates route, Security Group, Network ACL, listener, target an
 
 Chapter 46 now separates Service DNS, ClusterIP identity, EndpointSlice readiness, targetPort translation, independent egress/ingress NetworkPolicy decisions and the CNI data path. Its declared VXLAN visualization traces DNAT, real inner/outer tuples, DF-aware tunnel overhead, distinct Node/underlay-router hops, forward and reverse Layer-2 rewrites and TTL changes, decapsulation, reverse NAT, and distinct DNS, endpoint, policy and MTU/ICMP failures. The policy gates are explicitly logical requirements rather than a claimed implementation evaluation order.
 
+Chapter 47 now separates radio attachment, PDU Session, IP-address, transport and application continuity; derives the GEO propagation floor, BDP and flight-size ceiling; and traces 6LoWPAN fragmentation plus CoAP duplicate handling. Its visualization exposes a failed or recovered 5G handover, queue-sensitive GEO BDP/flight limits, and distinct IoT fragment-loss and ACK-loss branches with real tuples, packet numbers, fragment sizes/offsets, Message ID, Token and side-effect count.
+
 ## Remaining editorial pass
 
 | Chapters | Status |
 | --- | --- |
-| 47–48 | Advanced networking depth pass pending |
+| 48 | Network automation, reconciliation and observability depth pass pending |
 | 49–54 | Guided-project lesson depth pass pending |
 | 55–62 | Service-protocol depth pass pending |
 | 63–65 | Capstone/review depth pass pending |
