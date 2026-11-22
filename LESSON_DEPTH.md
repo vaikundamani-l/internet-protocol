@@ -8,7 +8,7 @@ The base course still contains all 65 bilingual chapters. A chapter is marked **
 
 | Chapters | Subject | Added depth per chapter | Status |
 | --- | --- | --- | --- |
-| 31–47 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes and mobile/satellite/constrained-IoT engineering | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
+| 31–48 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT and network automation/observability engineering | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
 
 Chapter 44's follow-up audit verified the depth contract and corrected the visualization so the EVPN Type 2 advertisement travels from the remote VTEP to the ingress VTEP and final decapsulation terminates at the remote VTEP/host. Reduced-motion, Tamil narration, mobile overflow and accessibility now have chapter-specific browser regression coverage.
 
@@ -18,11 +18,12 @@ Chapter 46 now separates Service DNS, ClusterIP identity, EndpointSlice readines
 
 Chapter 47 now separates radio attachment, PDU Session, IP-address, transport and application continuity; derives the GEO propagation floor, BDP and flight-size ceiling; and traces 6LoWPAN fragmentation plus CoAP duplicate handling. Its visualization exposes a failed or recovered 5G handover, queue-sensitive GEO BDP/flight limits, and distinct IoT fragment-loss and ACK-loss branches with real tuples, packet numbers, fragment sizes/offsets, Message ID, Token and side-effect count.
 
+Chapter 48 now separates source intent, NETCONF candidate/running state, NMDA intended and operational state, forwarding evidence and service outcome. Its visualization traces capability and identity discovery, revision-conflict rejection, YANG validation, confirmed commit, next-hop resolution, real canary tuple and router Layer-2 rewrite, confirmation or timed rollback, plus counter-discontinuity and trace-correlation investigations.
+
 ## Remaining editorial pass
 
 | Chapters | Status |
 | --- | --- |
-| 48 | Network automation, reconciliation and observability depth pass pending |
 | 49–54 | Guided-project lesson depth pass pending |
 | 55–62 | Service-protocol depth pass pending |
 | 63–65 | Capstone/review depth pass pending |

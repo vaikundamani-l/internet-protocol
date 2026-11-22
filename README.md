@@ -23,7 +23,7 @@ Open **Settings → Course language → தமிழ் / English**. The choice 
 ## Learn and experiment
 
 - Prerequisites, objectives, explanatory sections, worked examples, failure diagnosis, labs and primary sources in each chapter.
-- A validated lesson-depth supplement is being added chapter by chapter. Chapters 31–47 currently include extended bilingual theory, two multi-step worked cases, two evidence-led troubleshooting cases and at least three solved exercises each; see [LESSON_DEPTH.md](LESSON_DEPTH.md) for the exact ledger.
+- A validated lesson-depth supplement is being added chapter by chapter. Chapters 31–48 currently include extended bilingual theory, two multi-step worked cases, two evidence-led troubleshooting cases and at least three solved exercises each; see [LESSON_DEPTH.md](LESSON_DEPTH.md) for the exact ledger.
 - The Chapter 39 multicast animation is state-driven: it exposes receiver membership, ASM/SSM tree identity, RPF interface decisions and application delivery fields instead of using a decorative packet-only sequence.
 - The Chapter 40 MPLS animation follows a real two-label L3VPN path: VRF lookup, ordered label push, core swap, optional PHP, Route Target import and PE2 delivery or drop.
 - The Chapter 41 DNS animation exposes DoH versus UDP transport, warm/cold cache timing, referral NS and glue, authoritative answers, signed denial and DNSSEC validation failure instead of treating resolution as one box.
@@ -33,6 +33,7 @@ Open **Settings → Course language → தமிழ் / English**. The choice 
 - The Chapter 45 VPC animation separates the ALB health probe, client TLS connection and backend HTTP connection; it exposes concrete addresses and ports, route/policy/listener gates, Layer-2 transit changes and stateless ephemeral-port return failures.
 - The Chapter 46 Kubernetes animation traces Service DNS, ClusterIP-to-targetPort translation, EndpointSlice readiness, both logical NetworkPolicy directions, VXLAN VNI/headers and DF-aware MTU, distinct router/Node B transformations, reverse encapsulation and reverse NAT, with each failure gate observable.
 - The Chapter 47 path animation separates 5G PDU Session and QUIC continuity, calculates a queue-sensitive GEO propagation/BDP/flight-size path, and traces 6LoWPAN fragment reassembly plus CoAP ACK-loss duplicate suppression with concrete fields and failure gates.
+- The Chapter 48 automation animation traces inventory/capability checks, revision-safe candidate edits, confirmed commit, intended-versus-operational route state, a real canary tuple with router Layer-2 rewrite, timed rollback and counter/trace correlation instead of treating an API success as delivery.
 - Change loss, cache, routing, queue, MTU, certificate, policy and timing inputs; inspect computed state and event traces.
 - Bit-level IPv4 calculator, RTO equations, Dijkstra graph, BGP policy, NTP timing, VXLAN overhead and other focused models.
 - Download synthetic PCAPs/annotated CSVs for ARP, DNS and TCP. These are locally generated teaching fixtures, not live captures.
