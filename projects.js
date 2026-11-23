@@ -2,7 +2,7 @@
    These bounded teaching implementations are not production services. */
 const PROJECTS = [
   {
-    id:49,module:11,model:'framing',
+    id:49,module:11,model:'framed-chat',
     title:{en:'Python TCP framed chat',ta:'Python TCP framing உடன் உரையாடல்'},
     summary:{en:'Build a two-person, turn-taking chat relay with explicit byte framing, bounded messages and bounded frame reads and explicit terminal-input limitations.',ta:'இருவர் மாறிமாறிப் பேசும் chat relay உருவாக்குங்கள். ஒவ்வொரு message-க்கும் தெளிவான byte framing, அளவு வரம்பு, வரம்புள்ள frame reads மற்றும் terminal-input வரம்புகள் ஆகியவற்றைச் செயல்படுத்துங்கள்.'},
     prerequisites:{en:'Python 3.9 or later, three terminals, TCP byte-stream basics, UTF-8 and hexadecimal notation. No external packages or administrator rights are required.',ta:'Python 3.9 அல்லது புதிய பதிப்பு, மூன்று terminal-கள், TCP byte stream பற்றிய அடிப்படை அறிவு, UTF-8 மற்றும் hexadecimal குறியீடு தேவை. வெளிப்புற package அல்லது administrator அனுமதி தேவையில்லை.'},
@@ -20,7 +20,7 @@ const PROJECTS = [
       {question:{en:'A payload encodes to 12 bytes. How many application wire bytes include its header?',ta:'Payload encode செய்தபின் 12 byte எனில் header உட்பட application wire அளவு என்ன?'},options:{en:['16','12','48'],ta:['16','12','48']},answer:0,explanation:{en:'Four header bytes plus twelve payload bytes equals sixteen, excluding TCP/IP headers.',ta:'நான்கு header byte-களும் பன்னிரண்டு payload byte-களும் சேர்ந்து பதினாறு; TCP/IP header இதில் சேராது.'}},
       {question:{en:'Does relay sendall success prove the receiver displayed the text?',ta:'Relay-யின் sendall வெற்றி, receiver உரையைக் காட்டியதை உறுதிப்படுத்துமா?'},options:{en:['No; a display acknowledgment would be a separate application event','Yes, TCP reads the display','Yes, UTF-8 implies acknowledgment'],ta:['இல்லை; காட்சிப்படுத்திய acknowledgment தனி application நிகழ்வு','ஆம்; TCP திரையைப் படிக்கிறது','ஆம்; UTF-8 acknowledgment தருகிறது']},answer:0,explanation:{en:'A successful send hands bytes to the local networking stack; application consumption is separate.',ta:'Send வெற்றி byte-களை local networking stack ஏற்றதைச் சொல்கிறது; application பயன்படுத்தியது தனி நிகழ்வு.'}}
     ],
-    refs:[['Python socket API','https://docs.python.org/3/library/socket.html'],['TCP specification','https://www.rfc-editor.org/rfc/rfc9293.html']],
+    refs:[['Python socket API','https://docs.python.org/3/library/socket.html'],['Python Socket Programming HOWTO','https://docs.python.org/3/howto/sockets.html'],['TCP specification','https://www.rfc-editor.org/rfc/rfc9293.html'],['UTF-8','https://www.rfc-editor.org/rfc/rfc3629.html']],
     files:[{name:'chat.py',content:String.raw`import socket, struct, sys, threading, time
 
 def exact(s, n, deadline):
@@ -50,6 +50,8 @@ def send(s, text):
     s.sendall(struct.pack("!I", len(data)) + data)
 
 def main():
+    if len(sys.argv) != 2:
+        raise ValueError("server | a | b | test")
     mode = sys.argv[1]
     if mode == "test":
         a, b = socket.socketpair()
@@ -60,6 +62,15 @@ def main():
         t = threading.Thread(target=writer); t.start()
         assert receive(b) == "Hi"
         t.join()
+        tamil = "வணக்கம்"
+        send(a, tamil)
+        assert receive(b) == tamil
+        send(a, "")
+        assert receive(b) == ""
+        two = struct.pack("!I", 3) + b"one" + struct.pack("!I", 3) + b"two"
+        a.sendall(two)
+        assert receive(b) == "one"
+        assert receive(b) == "two"
         a.sendall(struct.pack("!I", 4097))
         try:
             receive(b)
@@ -70,6 +81,15 @@ def main():
         try:
             receive(b)
             raise AssertionError("accepted EOF")
+        except EOFError:
+            pass
+        b.close()
+        a, b = socket.socketpair()
+        a.sendall(struct.pack("!I", 5) + b"HEL")
+        a.close()
+        try:
+            receive(b)
+            raise AssertionError("accepted incomplete payload")
         except EOFError:
             pass
         b.close()

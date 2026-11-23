@@ -8,7 +8,7 @@ The base course still contains all 65 bilingual chapters. A chapter is marked **
 
 | Chapters | Subject | Added depth per chapter | Status |
 | --- | --- | --- | --- |
-| 31–48 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT and network automation/observability engineering | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
+| 31–49 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering and Python TCP framed chat | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
 
 Chapter 44's follow-up audit verified the depth contract and corrected the visualization so the EVPN Type 2 advertisement travels from the remote VTEP to the ingress VTEP and final decapsulation terminates at the remote VTEP/host. Reduced-motion, Tamil narration, mobile overflow and accessibility now have chapter-specific browser regression coverage.
 
@@ -20,11 +20,13 @@ Chapter 47 now separates radio attachment, PDU Session, IP-address, transport an
 
 Chapter 48 now separates source intent, NETCONF candidate/running state, NMDA intended and operational state, forwarding evidence and service outcome. Its visualization traces capability and identity discovery, revision-conflict rejection, YANG validation, confirmed commit, next-hop resolution, real canary tuple and router Layer-2 rewrite, confirmation or timed rollback, plus counter-discontinuity and trace-correlation investigations.
 
+Chapter 49 now treats TCP as an ordered byte stream rather than a message transport. Its executable Python project and visualization cover four-octet big-endian framing, fragmented and coalesced reads, UTF-8 octet length, independent relay connections and sequence spaces, zero-length frames, oversized declarations, incomplete-frame EOF and a single whole-frame deadline. The lesson also distinguishes `sendall()` completion from peer parsing or display.
+
 ## Remaining editorial pass
 
 | Chapters | Status |
 | --- | --- |
-| 49–54 | Guided-project lesson depth pass pending |
+| 50–54 | Guided-project lesson depth pass pending |
 | 55–62 | Service-protocol depth pass pending |
 | 63–65 | Capstone/review depth pass pending |
 | 1–30 | Foundations and core depth pass pending |
