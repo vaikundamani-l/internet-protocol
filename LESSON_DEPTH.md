@@ -24,6 +24,8 @@ Chapter 49 now treats TCP as an ordered byte stream rather than a message transp
 
 Chapter 50 now defines the Java request/response grammar byte for byte and separates stream completeness, allocation bounds, a monotonic whole-request deadline, `CREATE_NEW` storage policy, SHA-256 acknowledgment meaning and independent disk verification. Its executable acceptance test and visualization cover Tamil echo, verified binary upload, oversized declaration, incomplete-frame EOF, existing-destination refusal and slow-drip deadline failure.
 
+Chapter 50's follow-up audit corrected the visualization endpoint to match the executable Java client: the server is fixed at loopback port 9050, while the client source port is OS-assigned and ephemeral rather than a fabricated fixed 52000. The model now also labels its event times as explanatory instead of measured packet-capture timestamps, with regression coverage for both claims.
+
 ## Remaining editorial pass
 
 | Chapters | Status |
