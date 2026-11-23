@@ -142,7 +142,7 @@ if __name__ == "__main__":
 ` }]
   },
   {
-    id:50,module:11,model:'framing',
+    id:50,module:11,model:'java-transfer',
     title:{en:'Java framed echo and file transfer',ta:'Java framing உடன் echo மற்றும் file பரிமாற்றம்'},
     summary:{en:'Implement a bounded binary service with an operation byte, explicit lengths and byte-for-byte verification.',ta:'Operation byte, தெளிவான length, byte அளவிலான சரிபார்ப்பு ஆகியவற்றுடன் வரம்புள்ள binary service உருவாக்குங்கள்.'},
     prerequisites:{en:'JDK 11 or later, two terminals, Java streams, exceptions and basic TCP framing. Download Framed.java into an otherwise empty working directory.',ta:'JDK 11 அல்லது புதிய பதிப்பு, இரண்டு terminal-கள், Java stream, exception, அடிப்படை TCP framing அறிவு தேவை. காலியான வேலை directory-ல் Framed.java-ஐப் பதிவிறக்குங்கள்.'},
@@ -160,9 +160,10 @@ if __name__ == "__main__":
       {question:{en:'Echo works; the second upload fails with FileAlreadyExistsException. Diagnose it.',ta:'Echo வேலை செய்கிறது; இரண்டாவது upload FileAlreadyExistsException காட்டுகிறது. காரணம் என்ன?'},options:{en:['The storage no-overwrite policy is working','DNS is broken','TCP cannot carry binary bytes'],ta:['மேலெழுதாத storage கொள்கை செயல்படுகிறது','DNS பழுதடைந்துள்ளது','TCP binary byte-களை அனுப்ப முடியாது']},answer:0,explanation:{en:'The receiver deliberately uses CREATE_NEW for its fixed output path.',ta:'Receiver திட்டமிட்டு அதன் நிர்ணயிக்கப்பட்ட output path-க்கு CREATE_NEW பயன்படுத்துகிறது.'}},
       {question:{en:'What must be checked before allocating the payload array?',ta:'Payload array-க்கு memory ஒதுக்குவதற்கு முன் என்ன சோதிக்க வேண்டும்?'},options:{en:['Length is between zero and the configured limit','Length is prime','The filename ends in .txt'],ta:['Length பூஜ்யத்திலிருந்து நிர்ணயித்த வரம்புக்குள் உள்ளதா','Length ஒரு பகா எண்ணா','Filename .txt என முடிகிறதா']},answer:0,explanation:{en:'A signed integer may be negative and a positive value may still exhaust memory.',ta:'Signed integer negative-ஆக இருக்கலாம்; positive மதிப்பும் memory-ஐ நிரப்பிவிடலாம்.'}}
     ],
-    refs:[['Java DataInputStream','https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/DataInputStream.html'],['Java Files','https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html']],
+    refs:[['Java DataInputStream','https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/io/DataInputStream.html'],['Java Files','https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/nio/file/Files.html'],['Java MessageDigest','https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/security/MessageDigest.html'],['TCP specification','https://www.rfc-editor.org/rfc/rfc9293.html']],
     files:[{name:'Framed.java',content:String.raw`import java.io.*;
 import java.net.*;
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.*;
 import java.security.*;
@@ -170,10 +171,28 @@ import java.util.Arrays;
 
 public class Framed {
     static final int MAX = 1048576;
-    static byte[] read(DataInputStream in) throws IOException {
-        int n = in.readInt();
+    static final long FRAME_NANOS = 5_000_000_000L;
+    static void remaining(Socket s, long deadline) throws IOException {
+        long nanos = deadline - System.nanoTime();
+        if (nanos <= 0) throw new SocketTimeoutException("frame deadline / frame நேர வரம்பு");
+        long millis = Math.max(1, (nanos + 999_999) / 1_000_000);
+        s.setSoTimeout((int)Math.min(Integer.MAX_VALUE, millis));
+    }
+    static void readFully(Socket s, DataInputStream in, byte[] b, long deadline) throws IOException {
+        int offset = 0;
+        while (offset < b.length) {
+            remaining(s, deadline);
+            int count = in.read(b, offset, b.length - offset);
+            if (count < 0) throw new EOFException("partial frame / முழுமையற்ற frame");
+            offset += count;
+        }
+    }
+    static byte[] read(Socket s, DataInputStream in, long deadline) throws IOException {
+        byte[] header = new byte[4];
+        readFully(s, in, header, deadline);
+        int n = ByteBuffer.wrap(header).getInt();
         if (n < 0 || n > MAX) throw new IOException("length / அளவு");
-        byte[] b = new byte[n]; in.readFully(b); return b;
+        byte[] b = new byte[n]; readFully(s, in, b, deadline); return b;
     }
     static void write(DataOutputStream out, byte[] b) throws IOException {
         if (b.length > MAX) throw new IOException("oversize / அளவு மீறல்");
@@ -186,6 +205,7 @@ public class Framed {
         return s.toString();
     }
     public static void main(String[] args) throws Exception {
+        if (args.length == 0) throw new IllegalArgumentException("server | echo text | fixture | file path | verify");
         String mode = args[0];
         if (mode.equals("fixture")) {
             byte[] b = new byte[65536];
@@ -203,12 +223,13 @@ public class Framed {
                 System.out.println("Ready / தயார்");
                 while (true) {
                     try (Socket s = listener.accept()) {
-                        s.setSoTimeout(5000);
                         DataInputStream in = new DataInputStream(s.getInputStream());
                         DataOutputStream out = new DataOutputStream(s.getOutputStream());
+                        long deadline = System.nanoTime() + FRAME_NANOS;
+                        remaining(s, deadline);
                         int op = in.readUnsignedByte();
                         if (op != 1 && op != 2) throw new IOException("operation / செயல்");
-                        byte[] b = read(in);
+                        byte[] b = read(s, in, deadline);
                         if (op == 2) {
                             Files.write(Path.of("received.bin"), b, StandardOpenOption.CREATE_NEW);
                             b = hash(b).getBytes(StandardCharsets.US_ASCII);
@@ -220,6 +241,7 @@ public class Framed {
         }
         if (!mode.equals("echo") && !mode.equals("file"))
             throw new IllegalArgumentException("server | echo text | fixture | file path | verify");
+        if (args.length != 2) throw new IllegalArgumentException("echo text | file path");
         Path path = mode.equals("file") ? Path.of(args[1]) : null;
         if (path != null && Files.size(path) > MAX) throw new IOException("oversize");
         byte[] b = path == null ? args[1].getBytes(StandardCharsets.UTF_8) : Files.readAllBytes(path);
@@ -227,7 +249,7 @@ public class Framed {
             s.connect(new InetSocketAddress("127.0.0.1", 9050), 5000); s.setSoTimeout(5000);
             DataOutputStream out = new DataOutputStream(s.getOutputStream());
             out.writeByte(path == null ? 1 : 2); write(out, b);
-            byte[] response = read(new DataInputStream(s.getInputStream()));
+            byte[] response = read(s, new DataInputStream(s.getInputStream()), System.nanoTime() + FRAME_NANOS);
             String text = new String(response, StandardCharsets.UTF_8);
             System.out.println(text);
             System.out.println(path == null ? Arrays.equals(b, response) : hash(b).equals(text));

@@ -8,7 +8,7 @@ The base course still contains all 65 bilingual chapters. A chapter is marked **
 
 | Chapters | Subject | Added depth per chapter | Status |
 | --- | --- | --- | --- |
-| 31–49 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering and Python TCP framed chat | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
+| 31–50 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering, Python TCP framed chat and Java framed file transfer | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
 
 Chapter 44's follow-up audit verified the depth contract and corrected the visualization so the EVPN Type 2 advertisement travels from the remote VTEP to the ingress VTEP and final decapsulation terminates at the remote VTEP/host. Reduced-motion, Tamil narration, mobile overflow and accessibility now have chapter-specific browser regression coverage.
 
@@ -22,11 +22,13 @@ Chapter 48 now separates source intent, NETCONF candidate/running state, NMDA in
 
 Chapter 49 now treats TCP as an ordered byte stream rather than a message transport. Its executable Python project and visualization cover four-octet big-endian framing, fragmented and coalesced reads, UTF-8 octet length, independent relay connections and sequence spaces, zero-length frames, oversized declarations, incomplete-frame EOF and a single whole-frame deadline. The lesson also distinguishes `sendall()` completion from peer parsing or display.
 
+Chapter 50 now defines the Java request/response grammar byte for byte and separates stream completeness, allocation bounds, a monotonic whole-request deadline, `CREATE_NEW` storage policy, SHA-256 acknowledgment meaning and independent disk verification. Its executable acceptance test and visualization cover Tamil echo, verified binary upload, oversized declaration, incomplete-frame EOF, existing-destination refusal and slow-drip deadline failure.
+
 ## Remaining editorial pass
 
 | Chapters | Status |
 | --- | --- |
-| 50–54 | Guided-project lesson depth pass pending |
+| 51–54 | Guided-project lesson depth pass pending |
 | 55–62 | Service-protocol depth pass pending |
 | 63–65 | Capstone/review depth pass pending |
 | 1–30 | Foundations and core depth pass pending |
