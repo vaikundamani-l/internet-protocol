@@ -12,6 +12,21 @@ function server(bin,args){const child=spawn(bin,args,{cwd:dir,env,stdio:['ignore
 (async()=>{
  const chat=run('python3',['chat.py','test']);assert(chat.includes('PASS'),chat);
  run('python3',['-m','py_compile','chat.py','share.py','diagnose.py','topology.py','benchmark.py']);
+ let diagnostic;
+ try{
+  const localHTTP=`import http.server\nclass Quiet(http.server.SimpleHTTPRequestHandler):\n def log_message(self, *args): pass\nserver=http.server.ThreadingHTTPServer(('127.0.0.1',8052),Quiet)\nprint('Ready',flush=True)\nserver.serve_forever()`;
+  diagnostic=await server('python3',['-u','-c',localHTTP]);
+  const success=run('python3',['diagnose.py','127.0.0.1','8052','--http']).trim().split('\n').map(JSON.parse);
+  assert.equal(success[0].stage,'resolve');assert.equal(success[0].ok,true);
+  assert(success.some(x=>x.stage==='connect'&&x.ok===true&&x.address[0]==='127.0.0.1'&&x.address[1]===8052));
+  assert(success.some(x=>x.stage==='http'&&x.ok===true&&/^HTTP\/1\.[01] 200 /.test(x.status)));
+ }finally{
+  if(diagnostic){const exited=new Promise(resolve=>diagnostic.once('exit',resolve));diagnostic.kill();await exited;}
+ }
+ const refused=runFail('python3',['diagnose.py','127.0.0.1','8052','--http']).trim().split('\n').map(JSON.parse);
+ assert.equal(refused[0].stage,'resolve');assert.equal(refused[0].ok,true);
+ assert(refused.some(x=>x.stage==='connect'&&x.ok===false&&x.error==='ConnectionRefusedError'));
+ assert(!refused.some(x=>x.stage==='http'));
  const benchmark=run('python3',['benchmark.py','--seed','54']).trim().split('\n').map(JSON.parse);assert.equal(benchmark.filter(r=>r.kind==='trial').length,20);
  run('python3',['share.py','fixture']);let process;
  try{process=await server('python3',['-u','share.py','server','source.bin']);
@@ -42,6 +57,6 @@ function server(bin,args){const child=spawn(bin,args,{cwd:dir,env,stdio:['ignore
   assert.match(runFail('java',['Framed.java','file','fixture.bin']),/EOFException/);
   assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(dir,'received.bin'))).digest('hex'),stored);
  }finally{process?.kill();}
- console.log('PASS: Python framing self-test, Python syntax, twenty benchmark trials, challenged bearer rejection, corrupt-prefix and changed-identity preservation, authenticated resumed checksum transfer, Java source compilation, adversarial length/EOF/deadline rejection, Tamil echo, no-overwrite storage, file digest and byte equality.');
+ console.log('PASS: Python framing self-test, Python syntax, diagnostic resolve/connect/HTTP success and stopped-listener refusal evidence, twenty benchmark trials, challenged bearer rejection, corrupt-prefix and changed-identity preservation, authenticated resumed checksum transfer, Java source compilation, adversarial length/EOF/deadline rejection, Tamil echo, no-overwrite storage, file digest and byte equality.');
  console.log('Temporary test evidence: '+dir);
 })().catch(e=>{console.error(e);process.exitCode=1;});
