@@ -30,6 +30,8 @@ Chapter 51 now separates bearer authorization, encrypted-channel requirements, i
 
 Chapter 52 now treats endpoint diagnosis as a sequence of bounded claims rather than a single reachability verdict. Its executable CLI and visualization preserve resolver, per-address IPv6/IPv4 TCP and plaintext HTTP evidence; distinguish RST refusal, connect timeout, response timeout and malformed status; expose sequential-attempt timing versus Happy Eyeballs; and retain mixed outcomes such as IPv6 timeout with IPv4 HTTP 503.
 
+Chapter 52's follow-up audit replaced a loose `HTTP/` prefix claim with an executable bounded status-line gate: numeric major/minor version, status code 100–599, optional bounded reason phrase and final CRLF. It now cites RFC 9112 for message grammar separately from RFC 9110 HEAD semantics, emits numeric `status_code`, and rejects malformed versions and out-of-range codes in live acceptance tests.
+
 ## Remaining editorial pass
 
 | Chapters | Status |

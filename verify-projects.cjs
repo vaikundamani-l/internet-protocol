@@ -19,7 +19,7 @@ function server(bin,args){const child=spawn(bin,args,{cwd:dir,env,stdio:['ignore
   const success=run('python3',['diagnose.py','127.0.0.1','8052','--http']).trim().split('\n').map(JSON.parse);
   assert.equal(success[0].stage,'resolve');assert.equal(success[0].ok,true);
   assert(success.some(x=>x.stage==='connect'&&x.ok===true&&x.address[0]==='127.0.0.1'&&x.address[1]===8052));
-  assert(success.some(x=>x.stage==='http'&&x.ok===true&&/^HTTP\/1\.[01] 200 /.test(x.status)));
+  assert(success.some(x=>x.stage==='http'&&x.ok===true&&/^HTTP\/1\.[01] 200 /.test(x.status)&&x.status_code===200));
  }finally{
   if(diagnostic){const exited=new Promise(resolve=>diagnostic.once('exit',resolve));diagnostic.kill();await exited;}
  }
@@ -27,6 +27,13 @@ function server(bin,args){const child=spawn(bin,args,{cwd:dir,env,stdio:['ignore
  assert.equal(refused[0].stage,'resolve');assert.equal(refused[0].ok,true);
  assert(refused.some(x=>x.stage==='connect'&&x.ok===false&&x.error==='ConnectionRefusedError'));
  assert(!refused.some(x=>x.stage==='http'));
+ const badHTTP=`import socket\nresponses=[b'HTTP/banana 200 OK\\r\\n',b'HTTP/1.1 999 Out-of-range\\r\\n']\ns=socket.socket();s.setsockopt(socket.SOL_SOCKET,socket.SO_REUSEADDR,1);s.bind(('127.0.0.1',8052));s.listen(2)\nprint('Ready',flush=True)\nfor response in responses:\n c,_=s.accept();c.recv(4096);c.sendall(response);c.close()\ns.close()`;
+ const malformed=await server('python3',['-u','-c',badHTTP]),malformedExit=new Promise(resolve=>malformed.once('exit',resolve));
+ for(const expected of ['HTTP/banana 200 OK','HTTP/1.1 999 Out-of-range']){
+  const evidence=runFail('python3',['diagnose.py','127.0.0.1','8052','--http']).trim().split('\n').map(JSON.parse),failure=evidence.find(x=>x.stage==='http'&&x.ok===false);
+  assert(failure&&failure.error==='ValueError'&&failure.detail==='invalid HTTP status line',expected);
+ }
+ await malformedExit;
  const benchmark=run('python3',['benchmark.py','--seed','54']).trim().split('\n').map(JSON.parse);assert.equal(benchmark.filter(r=>r.kind==='trial').length,20);
  run('python3',['share.py','fixture']);let process;
  try{process=await server('python3',['-u','share.py','server','source.bin']);
@@ -57,6 +64,6 @@ function server(bin,args){const child=spawn(bin,args,{cwd:dir,env,stdio:['ignore
   assert.match(runFail('java',['Framed.java','file','fixture.bin']),/EOFException/);
   assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(dir,'received.bin'))).digest('hex'),stored);
  }finally{process?.kill();}
- console.log('PASS: Python framing self-test, Python syntax, diagnostic resolve/connect/HTTP success and stopped-listener refusal evidence, twenty benchmark trials, challenged bearer rejection, corrupt-prefix and changed-identity preservation, authenticated resumed checksum transfer, Java source compilation, adversarial length/EOF/deadline rejection, Tamil echo, no-overwrite storage, file digest and byte equality.');
+ console.log('PASS: Python framing self-test, Python syntax, diagnostic resolve/connect/HTTP success, stopped-listener refusal and malformed-version/out-of-range-status rejection, twenty benchmark trials, challenged bearer rejection, corrupt-prefix and changed-identity preservation, authenticated resumed checksum transfer, Java source compilation, adversarial length/EOF/deadline rejection, Tamil echo, no-overwrite storage, file digest and byte equality.');
  console.log('Temporary test evidence: '+dir);
 })().catch(e=>{console.error(e);process.exitCode=1;});

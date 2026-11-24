@@ -391,8 +391,8 @@ if __name__ == "__main__":
       {question:{en:'Three candidates each time out after two seconds. Is total runtime bounded by two seconds?',ta:'மூன்று candidate-களும் தலா இரண்டு விநாடியில் timeout ஆனால் மொத்த நேரம் இரண்டு விநாடிக்குள் முடியுமா?'},options:{en:['No; sequential attempts alone can take about six seconds','Yes; all candidates share one implicit timer','Yes; DNS removes socket timeouts'],ta:['இல்லை; வரிசையான முயற்சிகளே சுமார் ஆறு விநாடி எடுக்கலாம்','ஆம்; எல்லாவற்றுக்கும் ஒரே மறைமுக timer உண்டு','ஆம்; DNS socket timeout-ஐ நீக்கும்']},answer:0,explanation:{en:'Each socket operation has its own timeout; resolution adds separate time.',ta:'ஒவ்வொரு socket operation-க்கும் தனி timeout உண்டு; resolution நேரம் கூடுதலாகச் சேரும்.'}},
       {question:{en:'Does a successful TCP connect establish HTTP correctness?',ta:'TCP connect வெற்றி HTTP சரியாக வேலை செய்வதை நிரூபிக்குமா?'},options:{en:['No; inspect the application response separately','Yes; every TCP port uses HTTP','Yes; DNS validates HTTP'],ta:['இல்லை; application response-ஐ தனியே பார்க்க வேண்டும்','ஆம்; எல்லா TCP port-களும் HTTP பயன்படுத்தும்','ஆம்; DNS HTTP-ஐச் சரிபார்க்கும்']},answer:0,explanation:{en:'Transport establishment and application behavior are different stages.',ta:'Transport இணைப்பு அமைதலும் application நடத்தையும் வெவ்வேறு கட்டங்கள்.'}}
     ],
-    refs:[['Python socket API','https://docs.python.org/3/library/socket.html'],['Happy Eyeballs v2','https://www.rfc-editor.org/rfc/rfc8305.html'],['TCP connection failures','https://www.rfc-editor.org/rfc/rfc9293.html#section-3.8.3'],['HTTP semantics','https://www.rfc-editor.org/rfc/rfc9110.html#section-9.3.2']],
-    files:[{name:'diagnose.py',content:String.raw`import argparse, json, socket, sys, time
+    refs:[['Python socket API','https://docs.python.org/3/library/socket.html'],['Happy Eyeballs v2','https://www.rfc-editor.org/rfc/rfc8305.html'],['TCP connection failures','https://www.rfc-editor.org/rfc/rfc9293.html#section-3.8.3'],['HTTP HEAD semantics','https://www.rfc-editor.org/rfc/rfc9110.html#section-9.3.2'],['HTTP/1.1 status-line grammar','https://www.rfc-editor.org/rfc/rfc9112.html#section-4']],
+    files:[{name:'diagnose.py',content:String.raw`import argparse, json, re, socket, sys, time
 
 def emit(stage, start, **fields):
     print(json.dumps(dict(stage=stage, ms=round((time.perf_counter()-start)*1000, 3), **fields)))
@@ -429,11 +429,11 @@ def main():
                         b = s.recv(1)
                         if not b: raise EOFError("status line incomplete")
                         line.extend(b)
-                    text = line.decode("ascii", "replace").strip()
-                    fields = text.split()
-                    if not line.endswith(b"\r\n") or len(fields) < 2 or not fields[0].startswith("HTTP/") or not (len(fields[1]) == 3 and fields[1].isdigit()):
+                    match = re.fullmatch(rb"HTTP/[0-9]+\.[0-9]+ ([0-9]{3})(?: [\x09\x20-\x7e\x80-\xff]*)?\r\n", bytes(line))
+                    if not match or not 100 <= int(match.group(1)) <= 599:
                         raise ValueError("invalid HTTP status line")
-                    emit(stage, start, ok=True, address=address, status=text)
+                    text = bytes(line[:-2]).decode("latin-1")
+                    emit(stage, start, ok=True, address=address, status=text, status_code=int(match.group(1)))
                 successes += 1
         except (OSError, EOFError, ValueError) as e:
             emit(stage, start, ok=False, address=address, error=type(e).__name__, detail=str(e))
