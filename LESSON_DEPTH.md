@@ -8,7 +8,7 @@ The base course still contains all 65 bilingual chapters. A chapter is marked **
 
 | Chapters | Subject | Added depth per chapter | Status |
 | --- | --- | --- | --- |
-| 31–50 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering, Python TCP framed chat and Java framed file transfer | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
+| 31–51 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering, framed TCP projects and authenticated resumable sharing | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
 
 Chapter 44's follow-up audit verified the depth contract and corrected the visualization so the EVPN Type 2 advertisement travels from the remote VTEP to the ingress VTEP and final decapsulation terminates at the remote VTEP/host. Reduced-motion, Tamil narration, mobile overflow and accessibility now have chapter-specific browser regression coverage.
 
@@ -26,11 +26,13 @@ Chapter 50 now defines the Java request/response grammar byte for byte and separ
 
 Chapter 50's follow-up audit corrected the visualization endpoint to match the executable Java client: the server is fixed at loopback port 9050, while the client source port is OS-assigned and ephemeral rather than a fabricated fixed 52000. The model now also labels its event times as explanatory instead of measured packet-capture timestamps, with regression coverage for both claims.
 
+Chapter 51 now separates bearer authorization, encrypted-channel requirements, immutable snapshot identity, prefix proof, per-chunk verification, complete-object verification and no-overwrite publication. Its executable project and visualization cover pause/resume offsets, concrete HTTP headers and status codes, wrong-token 401 challenge, corrupt-prefix 409, changed identity, corrupt response body and final-name race while preserving verified state.
+
 ## Remaining editorial pass
 
 | Chapters | Status |
 | --- | --- |
-| 51–54 | Guided-project lesson depth pass pending |
+| 52–54 | Guided-project lesson depth pass pending |
 | 55–62 | Service-protocol depth pass pending |
 | 63–65 | Capstone/review depth pass pending |
 | 1–30 | Foundations and core depth pass pending |

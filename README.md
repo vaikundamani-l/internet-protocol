@@ -23,7 +23,7 @@ Open **Settings → Course language → தமிழ் / English**. The choice 
 ## Learn and experiment
 
 - Prerequisites, objectives, explanatory sections, worked examples, failure diagnosis, labs and primary sources in each chapter.
-- A validated lesson-depth supplement is being added chapter by chapter. Chapters 31–50 currently include extended bilingual theory, two multi-step worked cases, two evidence-led troubleshooting cases and at least three solved exercises each; see [LESSON_DEPTH.md](LESSON_DEPTH.md) for the exact ledger.
+- A validated lesson-depth supplement is being added chapter by chapter. Chapters 31–51 currently include extended bilingual theory, two multi-step worked cases, two evidence-led troubleshooting cases and at least three solved exercises each; see [LESSON_DEPTH.md](LESSON_DEPTH.md) for the exact ledger.
 - The Chapter 39 multicast animation is state-driven: it exposes receiver membership, ASM/SSM tree identity, RPF interface decisions and application delivery fields instead of using a decorative packet-only sequence.
 - The Chapter 40 MPLS animation follows a real two-label L3VPN path: VRF lookup, ordered label push, core swap, optional PHP, Route Target import and PE2 delivery or drop.
 - The Chapter 41 DNS animation exposes DoH versus UDP transport, warm/cold cache timing, referral NS and glue, authoritative answers, signed denial and DNSSEC validation failure instead of treating resolution as one box.
@@ -36,6 +36,7 @@ Open **Settings → Course language → தமிழ் / English**. The choice 
 - The Chapter 48 automation animation traces inventory/capability checks, revision-safe candidate edits, confirmed commit, intended-versus-operational route state, a real canary tuple with router Layer-2 rewrite, timed rollback and counter/trace correlation instead of treating an API success as delivery.
 - The Chapter 49 framed-chat animation traces concrete length and payload octets across short or coalesced `recv()` observations, preserves parser buffer state, creates a new independent TCP flow at the relay, and exposes oversize, EOF and whole-frame deadline failures without pretending API read sizes are packet boundaries.
 - The Chapter 50 Java-transfer animation traces the operation byte, big-endian length, raw payload, fixed destination and SHA-256 response with concrete sizes. It branches at allocation bounds, incomplete EOF, `CREATE_NEW` conflict and a monotonic slow-frame deadline, while keeping digest acknowledgment distinct from stored-byte and durability evidence.
+- The Chapter 51 resumable-sharing animation traces redacted Bearer authorization, immutable metadata, prefix hashes, exact offsets and chunk sizes, per-chunk digest checks and atomic no-overwrite publication. Its 401, 409, identity, corrupt-body and final-name branches preserve and expose the last verified state.
 - Change loss, cache, routing, queue, MTU, certificate, policy and timing inputs; inspect computed state and event traces.
 - Bit-level IPv4 calculator, RTO equations, Dijkstra graph, BGP policy, NTP timing, VXLAN overhead and other focused models.
 - Download synthetic PCAPs/annotated CSVs for ARP, DNS and TCP. These are locally generated teaching fixtures, not live captures.

@@ -13,7 +13,7 @@ The course is published at https://vaikundamani-l.github.io/internet-protocol/.
 
 ## Lesson-depth editorial pass
 
-- Chapters 31–50 now have extended bilingual theory, worked calculations, troubleshooting investigations and solved exercises.
+- Chapters 31–51 now have extended bilingual theory, worked calculations, troubleshooting investigations and solved exercises.
 - Chapter 39's multicast model now traces receiver membership, ASM/SSM tree state, RPF acceptance and downstream delivery with actual `(S,G)`, IP, UDP-port and interface state rather than a two-step availability diagram.
 - Chapter 40's MPLS model now traces a two-label L3VPN packet through VRF classification, label push/swap/PHP, Route Target import and delivery/drop state, including stack bits and overhead.
 - Chapter 41's DNS model now traces stub transport, cache branching, parent referral/glue, child authority, DNSSEC SECURE/INSECURE/BOGUS outcomes and authenticated positive or negative delivery.
@@ -30,6 +30,7 @@ The course is published at https://vaikundamani-l.github.io/internet-protocol/.
 - Chapter 49 now traces length-prefixed Python TCP chat through fragmented and coalesced stream reads, UTF-8 octet counting and two independent relay connections. The executable self-test and visualization reject oversized lengths, partial-frame EOF and slow-drip deadlines, and distinguish an empty frame from socket EOF.
 - Chapter 50 now traces a Java ECHO/FILE grammar from operation and big-endian length through exact payload assembly, fixed-path `CREATE_NEW` storage and a framed SHA-256 acknowledgment. Its executable probes and visualization cover Tamil echo, byte-equal binary transfer, oversize and partial-EOF rejection, existing-file preservation and a shared whole-request deadline.
 - Chapter 50 follow-up QA replaced a fabricated fixed client port with the Java program's real OS-assigned ephemeral-port semantics and explicitly marked model timestamps as explanatory rather than measured. Model and browser regressions now guard those endpoint claims.
+- Chapter 51 now traces an authenticated resumable object across metadata identity, verified-prefix negotiation, bounded chunk responses, interrupted state, final digest and atomic create-if-absent publication. Live tests reject challenged wrong credentials, corrupt prefixes and changed sidecars without mutating verified partial bytes; the model exposes corresponding 401, 409, identity, chunk-digest and final-name gates.
 - `tests-depth.cjs` enforces the structure, Tamil pairing and minimum instructional depth for every added supplement.
 - The exact chapter-by-chapter status is maintained in `LESSON_DEPTH.md`; chapters not listed as complete there remain pending.
 

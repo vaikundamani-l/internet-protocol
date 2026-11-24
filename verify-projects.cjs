@@ -6,15 +6,25 @@ const ctx={};vm.createContext(ctx);vm.runInContext(fs.readFileSync('projects.js'
 const dir=fs.mkdtempSync(path.join(os.tmpdir(),'protocol-atlas-projects-'));
 for(const p of ctx.projects)for(const f of p.files||[])fs.writeFileSync(path.join(dir,f.name),f.content);
 const env={...process.env,SHARE_TOKEN:'test-only-fixture-token-9051'};
-function run(bin,args){const r=spawnSync(bin,args,{cwd:dir,env,encoding:'utf8',timeout:20000});assert.equal(r.status,0,`${bin} ${args.join(' ')}\n${r.stderr}\n${r.stdout}`);return r.stdout;}
-function runFail(bin,args){const r=spawnSync(bin,args,{cwd:dir,env,encoding:'utf8',timeout:20000});assert.notEqual(r.status,0,`${bin} ${args.join(' ')} unexpectedly succeeded`);return r.stdout+r.stderr;}
+function run(bin,args,extraEnv={}){const r=spawnSync(bin,args,{cwd:dir,env:{...env,...extraEnv},encoding:'utf8',timeout:20000});assert.equal(r.status,0,`${bin} ${args.join(' ')}\n${r.stderr}\n${r.stdout}`);return r.stdout;}
+function runFail(bin,args,extraEnv={}){const r=spawnSync(bin,args,{cwd:dir,env:{...env,...extraEnv},encoding:'utf8',timeout:20000});assert.notEqual(r.status,0,`${bin} ${args.join(' ')} unexpectedly succeeded`);return r.stdout+r.stderr;}
 function server(bin,args){const child=spawn(bin,args,{cwd:dir,env,stdio:['ignore','pipe','pipe']});let output='';return new Promise((resolve,reject)=>{const timer=setTimeout(()=>{child.kill();reject(Error('Server not ready: '+output));},12000);child.stdout.on('data',b=>{output+=b;if(/Ready|தயார்/.test(output)){clearTimeout(timer);resolve(child);}});child.stderr.on('data',b=>output+=b);child.on('exit',code=>{clearTimeout(timer);if(code!==null)reject(Error('Server exited '+code+': '+output));});});}
 (async()=>{
  const chat=run('python3',['chat.py','test']);assert(chat.includes('PASS'),chat);
  run('python3',['-m','py_compile','chat.py','share.py','diagnose.py','topology.py','benchmark.py']);
  const benchmark=run('python3',['benchmark.py','--seed','54']).trim().split('\n').map(JSON.parse);assert.equal(benchmark.filter(r=>r.kind==='trial').length,20);
  run('python3',['share.py','fixture']);let process;
- try{process=await server('python3',['-u','share.py','server','source.bin']);assert(run('python3',['share.py','get','received.bin','--pause','1']).includes('Paused'));assert(run('python3',['share.py','get','received.bin']).includes('VERIFIED'));assert.equal(run('python3',['share.py','verify','source.bin','received.bin']).trim(),'True');}finally{process?.kill();}
+ try{process=await server('python3',['-u','share.py','server','source.bin']);
+  assert.match(runFail('python3',['share.py','get','unauthorized.bin'],{SHARE_TOKEN:'different-test-token-9051'}),/HTTP Error 401/);
+  assert(!fs.existsSync(path.join(dir,'unauthorized.bin.part'))&&!fs.existsSync(path.join(dir,'unauthorized.bin.meta')));
+  assert(run('python3',['share.py','get','corrupt.bin','--pause','1']).includes('65536'));
+  const corruptPath=path.join(dir,'corrupt.bin.part'),corrupt=fs.readFileSync(corruptPath);corrupt[0]^=255;fs.writeFileSync(corruptPath,corrupt);const corruptDigest=crypto.createHash('sha256').update(corrupt).digest('hex');
+  assert.match(runFail('python3',['share.py','get','corrupt.bin']),/HTTP Error 409/);assert.equal(fs.statSync(corruptPath).size,65536);assert.equal(crypto.createHash('sha256').update(fs.readFileSync(corruptPath)).digest('hex'),corruptDigest);
+  assert(run('python3',['share.py','get','identity.bin','--pause','1']).includes('65536'));
+  const identityPart=path.join(dir,'identity.bin.part'),identitySize=fs.statSync(identityPart).size,identityMeta=path.join(dir,'identity.bin.meta'),changed=JSON.parse(fs.readFileSync(identityMeta,'utf8'));changed.sha256='0'.repeat(64);fs.writeFileSync(identityMeta,JSON.stringify(changed));
+  assert.match(runFail('python3',['share.py','get','identity.bin']),/source changed/);assert.equal(fs.statSync(identityPart).size,identitySize);
+  assert(run('python3',['share.py','get','received.bin','--pause','1']).includes('Paused'));assert(run('python3',['share.py','get','received.bin']).includes('VERIFIED'));assert.equal(run('python3',['share.py','verify','source.bin','received.bin']).trim(),'True');
+ }finally{process?.kill();}
  // The Java source launcher uses jdk.compiler even when javac is not on PATH.
  run('java',['Framed.java','fixture']);
  // share.py already used received.bin; Java intentionally refuses overwrite.
@@ -32,6 +42,6 @@ function server(bin,args){const child=spawn(bin,args,{cwd:dir,env,stdio:['ignore
   assert.match(runFail('java',['Framed.java','file','fixture.bin']),/EOFException/);
   assert.equal(crypto.createHash('sha256').update(fs.readFileSync(path.join(dir,'received.bin'))).digest('hex'),stored);
  }finally{process?.kill();}
- console.log('PASS: Python framing self-test, Python syntax, twenty benchmark trials, authenticated partial/resumed checksum transfer, Java source compilation, adversarial length/EOF/deadline rejection, Tamil echo, no-overwrite storage, file digest and byte equality.');
+ console.log('PASS: Python framing self-test, Python syntax, twenty benchmark trials, challenged bearer rejection, corrupt-prefix and changed-identity preservation, authenticated resumed checksum transfer, Java source compilation, adversarial length/EOF/deadline rejection, Tamil echo, no-overwrite storage, file digest and byte equality.');
  console.log('Temporary test evidence: '+dir);
 })().catch(e=>{console.error(e);process.exitCode=1;});
