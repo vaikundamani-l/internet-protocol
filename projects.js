@@ -462,7 +462,7 @@ if __name__ == "__main__":
       {question:{en:'Which next hop restores R2’s path to 10.253.1.0/30?',ta:'10.253.1.0/30 நோக்கிய R2 பாதைக்கு எந்த next hop தேவை?'},options:{en:['10.253.2.1','10.253.3.2','127.0.0.1'],ta:['10.253.2.1','10.253.3.2','127.0.0.1']},answer:0,explanation:{en:'R1’s address on the R1–R2 link is 10.253.2.1.',ta:'R1–R2 link-ல் R1-ன் address 10.253.2.1.'}},
       {question:{en:'Why stop namespace processes before deletion?',ta:'Namespace நீக்குமுன் அதன் process-களை ஏன் நிறுத்த வேண்டும்?'},options:{en:['Their references can keep the namespace alive','They automatically change host DNS','Nftables requires an Internet connection'],ta:['அவற்றின் reference namespace-ஐ உயிருடன் வைத்திருக்கலாம்','அவை தானாக host DNS மாற்றும்','Nftables-க்கு Internet தேவை']},answer:0,explanation:{en:'Removing a name is not the same as releasing every reference.',ta:'பெயரை நீக்குவது எல்லா reference-களையும் விடுவிப்பதற்குச் சமமல்ல.'}}
     ],
-    refs:[['ip-netns manual','https://man7.org/linux/man-pages/man8/ip-netns.8.html'],['nftables project manual','https://netfilter.org/projects/nftables/manpage.html']],
+    refs:[['Linux network_namespaces(7)','https://man7.org/linux/man-pages/man7/network_namespaces.7.html'],['Linux veth(4)','https://man7.org/linux/man-pages/man4/veth.4.html'],['ip-netns manual','https://man7.org/linux/man-pages/man8/ip-netns.8.html'],['nftables project manual','https://netfilter.org/projects/nftables/manpage.html'],['RFC 1812 IPv4 routers','https://www.rfc-editor.org/info/rfc1812'],['RFC 9293 TCP','https://www.rfc-editor.org/info/rfc9293']],
     files:[{name:'topology.py',content:String.raw`import json, subprocess, sys
 
 NAMES = ["p53a", "p53r1", "p53r2", "p53b"]

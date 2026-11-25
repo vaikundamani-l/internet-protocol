@@ -8,7 +8,7 @@ The base course still contains all 65 bilingual chapters. A chapter is marked **
 
 | Chapters | Subject | Added depth per chapter | Status |
 | --- | --- | --- | --- |
-| 31–52 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering, framed TCP projects, authenticated resumable sharing and evidence-first endpoint diagnostics | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
+| 31–53 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering, framed TCP projects, authenticated resumable sharing, evidence-first endpoint diagnostics and two-router stateful forwarding | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
 
 Chapter 44's follow-up audit verified the depth contract and corrected the visualization so the EVPN Type 2 advertisement travels from the remote VTEP to the ingress VTEP and final decapsulation terminates at the remote VTEP/host. Reduced-motion, Tamil narration, mobile overflow and accessibility now have chapter-specific browser regression coverage.
 
@@ -32,11 +32,13 @@ Chapter 52 now treats endpoint diagnosis as a sequence of bounded claims rather 
 
 Chapter 52's follow-up audit replaced a loose `HTTP/` prefix claim with an executable bounded status-line gate: numeric major/minor version, status code 100–599, optional bounded reason phrase and final CRLF. It now cites RFC 9112 for message grammar separately from RFC 9110 HEAD semantics, emits numeric `status_code`, and rejects malformed versions and out-of-range codes in live acceptance tests.
 
+Chapter 53 now explains namespace and veth isolation, route ownership, per-hop Ethernet replacement, IPv4 TTL/checksum changes and R1 forward-hook conntrack decisions. Its visualization follows a concrete TCP 8053 handshake and HTTP response across A–R1–R2–B, then branches into a final-rule ICMP policy drop and a missing R2 return-route failure with observable counters and state.
+
 ## Remaining editorial pass
 
 | Chapters | Status |
 | --- | --- |
-| 53–54 | Guided-project lesson depth pass pending |
+| 54 | Guided-project lesson depth pass pending |
 | 55–62 | Service-protocol depth pass pending |
 | 63–65 | Capstone/review depth pass pending |
 | 1–30 | Foundations and core depth pass pending |

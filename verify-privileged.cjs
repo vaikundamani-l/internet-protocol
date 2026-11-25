@@ -7,8 +7,10 @@ const report={scope:'Only test-owned p53 namespaces; not host firewall',checks:[
  const probe=run('python3',['topology.py','setup'],false);if(probe.status!==0){report.checks.push({name:'namespace setup',status:'BLOCKED',details:probe.stderr.slice(-1500)});process.exitCode=2;return;}owned=true;
  server=spawn('ip',['netns','exec','p53b','python3','-u','-m','http.server','8053','--bind','10.253.3.2'],{cwd:dir,stdio:['ignore','pipe','pipe']});await new Promise((resolve,reject)=>{const timer=setTimeout(()=>reject(Error('HTTP startup timeout')),7000);server.stdout.on('data',b=>{if(String(b).includes('Serving HTTP')){clearTimeout(timer);resolve();}});server.on('exit',()=>reject(Error('HTTP server exited')));});
  const request=()=>run('ip',['netns','exec','p53a','curl','--noproxy','*','--max-time','3','--fail','http://10.253.3.2:8053/'],false);
- assert.equal(request().status,0);report.checks.push({name:'multi-router HTTP',status:'PASS'});
- run('python3',['topology.py','policy']);assert.equal(request().status,0);assert.notEqual(run('ip',['netns','exec','p53a','ping','-c','1','-W','1','10.253.3.2'],false).status,0);report.checks.push({name:'firewall permits HTTP and denies new ICMP',status:'PASS'});
+ assert.equal(request().status,0);assert.equal(run('ip',['netns','exec','p53a','ping','-c','1','-W','1','10.253.3.2'],false).status,0);report.checks.push({name:'multi-router HTTP and pre-policy ICMP',status:'PASS'});
+ run('python3',['topology.py','policy']);assert.equal(request().status,0);assert.notEqual(run('ip',['netns','exec','p53a','ping','-c','1','-W','1','10.253.3.2'],false).status,0);
+ const rules=run('ip',['netns','exec','p53r1','nft','list','chain','inet','p53','forward']).stdout;
+ assert.match(rules,/tcp dport 8053 ct state new counter packets [1-9][0-9]*/);assert.match(rules,/counter packets [1-9][0-9]* bytes [1-9][0-9]* drop/);report.checks.push({name:'firewall permits HTTP, denies new ICMP and increments both counters',status:'PASS'});
  run('python3',['topology.py','break']);assert.notEqual(request().status,0);run('python3',['topology.py','repair']);assert.equal(request().status,0);report.checks.push({name:'return-route failure and recovery',status:'PASS'});
  }catch(e){report.checks.push({name:'privileged lab',status:'FAIL',details:e.message});process.exitCode=1;}finally{
  if(server&&server.exitCode===null){const exited=new Promise(resolve=>server.once('exit',resolve));server.kill();await exited;}
