@@ -38,6 +38,8 @@ Chapter 54 now distinguishes application batch size, closed-loop echo waits, TCP
 
 ## Remaining editorial pass
 
+The Chapter 54 audit aligned the simulation timeline with its reported duration and placed the corrupt echo inside the first batch for both batch sizes. Tamil scenario controls now describe each branch.
+
 | Chapters | Status |
 | --- | --- |
 | 55–62 | Service-protocol depth pass pending |

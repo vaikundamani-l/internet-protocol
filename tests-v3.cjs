@@ -55,6 +55,15 @@ for(const batch of [1024,65536]){const r=MODEL.research.compute({scenario:'valid
 for(const origin of [true,false])for(const session of [true,false])for(const masked of [true,false])for(const authorized of [true,false]){const r=MODEL.services.compute({journey:'websocket',origin,session,masked,authorized}),last=r.events.at(-1).state,delivered=origin&&session&&masked&&authorized;assert.equal(last.delivered,delivered);if(!origin||!session)assert.equal(last.upgraded,false);else if(!masked)assert.equal(last.closeCode,1002);else if(!authorized)assert.equal(last.closeCode,1008);else{assert.equal(r.events[1].state.SecWebSocketAccept,'s3pPLMBiTxaQ9kYGzzhZRbK+xOo=');assert.equal(r.events[2].state.wirePayload,'7f 93');}}
 for(const mode of ['full','resume'])for(const valid of [true,false])for(const early of [true,false])for(const accept of [true,false])for(const safe of [true,false]){const r=MODEL.tls.compute({mode,valid,early,accept,safe}),last=r.events.at(-1);assert.equal(r.events[0].state.destinationPort,443);assert.equal(r.events[0].state.server_name,'api.example.test');if(!valid){assert.equal(last.state.delivered,false);assert.equal(last.state.failureGate,mode==='full'?'PKIX_OR_SERVICE_IDENTITY':'PSK_BINDER_OR_SCOPE');continue;}if(mode==='full'){assert.equal(last.state.delivered,true);assert.equal(last.state.earlyData,false);assert.equal(r.events[1].state.Certificate_SAN,'DNS:api.example.test');continue;}if(!early){assert.equal(last.state.delivered,true);assert.equal(last.state.earlyData,false);assert.equal(r.events[1].state.keyExchange,'psk_dhe_ke + X25519');}else if(!accept){assert.equal(last.state.retriedAfter425,true);assert.equal(last.state.sideEffectCount,safe?0:1);assert(r.events.some(e=>e.state.HTTPStatus===425&&e.drop));}else{assert.equal(last.state.replayObserved,true);assert.equal(last.state.sideEffectCount,safe?0:2);assert.equal(last.drop,!safe);}}
 assert.equal(crypto.createHash('sha1').update('dGhlIHNhbXBsZSBub25jZQ==258EAFA5-E914-47DA-95CA-C5AB0DC85B11').digest('base64'),'s3pPLMBiTxaQ9kYGzzhZRbK+xOo=');
+for (const batch of [1024, 65536]) {
+ const trace = MODEL.research.compute({scenario:'valid', batch}).events;
+ const elapsed = trace[4].state.timeMs - trace[2].state.timeMs;
+ assert(Math.abs(elapsed - 1000 * trace[5].state.seconds) < 1e-9);
+ assert(trace.every((event, i) => !i || event.state.timeMs >= trace[i-1].state.timeMs));
+ const corrupt = MODEL.research.compute({scenario:'corrupt', batch}).events[4].state;
+ assert(corrupt.mismatchOffset >= 0 && corrupt.mismatchOffset < batch);
+ assert.equal(Number(corrupt.expectedByte), corrupt.mismatchOffset % 256);
+}
 for(const a of APPLIED){assert(!Learning.grade(a.id,'wrong'));assert(Learning.grade(a.id,a.answer));}assert.equal(Object.keys(Learning.export().applied).length,12);
 assert.throws(()=>Learning.validate({...Learning.export(),reviews:{999:{due:0,interval:1}}}));
 const before=JSON.stringify(Learning.export());assert.throws(()=>run('validateBackup({version:2,completed:[],bookmarks:[],notes:{},scores:{},training:{version:999}})'));assert.equal(JSON.stringify(Learning.export()),before);
