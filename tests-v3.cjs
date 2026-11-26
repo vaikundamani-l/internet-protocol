@@ -64,6 +64,10 @@ for (const batch of [1024, 65536]) {
  assert(corrupt.mismatchOffset >= 0 && corrupt.mismatchOffset < batch);
  assert.equal(Number(corrupt.expectedByte), corrupt.mismatchOffset % 256);
 }
+{const r=MODEL.ssh.compute({scenario:'success',verified:true}),last=r.events.at(-1).state;assert.equal(r.events[0].state.TCP,'49155→22');assert.equal(r.events[0].state.TTL,'64→61');assert.equal(r.events[1].state.message,'SSH_MSG_KEXINIT → KEX_ECDH_REPLY → NEWKEYS');assert.equal(r.events[2].state.identityAccepted,true);assert.equal(r.events[3].state.subsystem,'sftp');assert.equal(r.events[4].state.remoteSize,12582912);assert.equal(last.existingFinalOverwritten,false);assert.equal(last.delivered,true);}
+{const r=MODEL.ssh.compute({scenario:'new',verified:false}),last=r.events.at(-1).state;assert.equal(last.failureGate,'HOST_ENROLLMENT');assert.equal(last.credentialsSent,false);assert.equal(last.SFTPChannelOpened,false);assert.equal(r.events.length,3);}
+{const r=MODEL.ssh.compute({scenario:'changed',verified:true}),last=r.events.at(-1).state;assert.equal(last.failureGate,'HOST_KEY_MISMATCH');assert.equal(last.credentialsSent,false);assert.equal(last.presentedFingerprint,'SHA256:AbCd');assert.equal(r.events.length,3);}
+{const r=MODEL.ssh.compute({scenario:'denied',verified:true}),last=r.events.at(-1).state;assert.equal(last.SFTPStatus,'SSH_FX_PERMISSION_DENIED');assert.equal(last.temporaryPreserved,true);assert.equal(last.finalCreated,false);assert.equal(last.failureGate,'PUBLICATION_AUTHORIZATION');}
 for(const a of APPLIED){assert(!Learning.grade(a.id,'wrong'));assert(Learning.grade(a.id,a.answer));}assert.equal(Object.keys(Learning.export().applied).length,12);
 assert.throws(()=>Learning.validate({...Learning.export(),reviews:{999:{due:0,interval:1}}}));
 const before=JSON.stringify(Learning.export());assert.throws(()=>run('validateBackup({version:2,completed:[],bookmarks:[],notes:{},scores:{},training:{version:999}})'));assert.equal(JSON.stringify(Learning.export()),before);

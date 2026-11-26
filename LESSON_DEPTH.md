@@ -8,7 +8,7 @@ The base course still contains all 65 bilingual chapters. A chapter is marked **
 
 | Chapters | Subject | Added depth per chapter | Status |
 | --- | --- | --- | --- |
-| 31–54 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering, framed TCP projects, authenticated resumable sharing, evidence-first endpoint diagnostics, two-router stateful forwarding and reproducible TCP benchmark research | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
+| 31–55 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering, framed TCP projects, authenticated resumable sharing, evidence-first endpoint diagnostics, two-router stateful forwarding, reproducible TCP benchmark research and SSH/SFTP host-key lifecycle | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
 
 Chapter 44's follow-up audit verified the depth contract and corrected the visualization so the EVPN Type 2 advertisement travels from the remote VTEP to the ingress VTEP and final decapsulation terminates at the remote VTEP/host. Reduced-motion, Tamil narration, mobile overflow and accessibility now have chapter-specific browser regression coverage.
 
@@ -36,13 +36,15 @@ Chapter 53 now explains namespace and veth isolation, route ownership, per-hop E
 
 Chapter 54 now distinguishes application batch size, closed-loop echo waits, TCP byte-stream behavior and loopback application goodput from TCP segment size or link capacity. Its visualization follows the actual benchmark timing and integrity gates, records concrete TCP/IP and JSONL fields, and rejects corrupt echo evidence or a batch/order-confounded schedule instead of manufacturing a speed conclusion.
 
+Chapter 55 now separates TCP reachability, SSH key exchange, host identity, user authentication, channel authorization, SFTP operations and file publication evidence. Its visualization traces real endpoint/port, Layer-2 and TTL effects, negotiated algorithms, exchange-signature and host-key gates, an SFTP-only channel, verified temporary upload and no-overwrite publication, with distinct first-contact, changed-key and rename-denial failures.
+
 ## Remaining editorial pass
 
 The Chapter 54 audit aligned the simulation timeline with its reported duration and placed the corrupt echo inside the first batch for both batch sizes. Tamil scenario controls now describe each branch.
 
 | Chapters | Status |
 | --- | --- |
-| 55–62 | Service-protocol depth pass pending |
+| 56–62 | Service-protocol depth pass pending |
 | 63–65 | Capstone/review depth pass pending |
 | 1–30 | Foundations and core depth pass pending |
 
