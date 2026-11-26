@@ -8,7 +8,7 @@ The base course still contains all 65 bilingual chapters. A chapter is marked **
 
 | Chapters | Subject | Added depth per chapter | Status |
 | --- | --- | --- | --- |
-| 31–55 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering, framed TCP projects, authenticated resumable sharing, evidence-first endpoint diagnostics, two-router stateful forwarding, reproducible TCP benchmark research and SSH/SFTP host-key lifecycle | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
+| 31–56 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering, framed TCP projects, authenticated resumable sharing, evidence-first endpoint diagnostics, two-router stateful forwarding, reproducible TCP benchmark research, SSH/SFTP host-key lifecycle and authenticated mail delivery | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
 
 Chapter 44's follow-up audit verified the depth contract and corrected the visualization so the EVPN Type 2 advertisement travels from the remote VTEP to the ingress VTEP and final decapsulation terminates at the remote VTEP/host. Reduced-motion, Tamil narration, mobile overflow and accessibility now have chapter-specific browser regression coverage.
 
@@ -38,13 +38,15 @@ Chapter 54 now distinguishes application batch size, closed-loop echo waits, TCP
 
 Chapter 55 now separates TCP reachability, SSH key exchange, host identity, user authentication, channel authorization, SFTP operations and file publication evidence. Its visualization traces real endpoint/port, Layer-2 and TTL effects, negotiated algorithms, exchange-signature and host-key gates, an SFTP-only channel, verified temporary upload and no-overwrite publication, with distinct first-contact, changed-key and rename-denial failures.
 
+Chapter 56 now separates submission, relay, SMTP responsibility, local delivery and mailbox access; preserves envelope, visible-author and transport identities; and evaluates SPF, DKIM authentication and DMARC alignment independently. Its visualization traces MX preference, a concrete TCP/25 hop, Layer-2/TTL changes, STARTTLS, SMTP commands, queue IDs, aligned DKIM delivery, 451 retry, forwarding-broken DMARC and uncertain POP3 deletion before QUIT.
+
 ## Remaining editorial pass
 
 The Chapter 54 audit aligned the simulation timeline with its reported duration and placed the corrupt echo inside the first batch for both batch sizes. Tamil scenario controls now describe each branch.
 
 | Chapters | Status |
 | --- | --- |
-| 56–62 | Service-protocol depth pass pending |
+| 57–62 | Service-protocol depth pass pending |
 | 63–65 | Capstone/review depth pass pending |
 | 1–30 | Foundations and core depth pass pending |
 
