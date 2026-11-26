@@ -42,6 +42,8 @@ Chapter 56 now separates submission, relay, SMTP responsibility, local delivery 
 
 Chapter 57 now derives NTP offset and delay while exposing asymmetric-path bias, oscillator drift, clock discipline and monotonic-time boundaries. It distinguishes PTP one-step/two-step timestamping, boundary and transparent clocks, correction uncertainty, profile/domain checks and evidence-led verification against an independent reference.
 
+Chapter 57 audit clarified that 15 µs bounds the magnitude of the modeled PTP timing error from above. The Chapter 56 audit aligned the relay IP with SPF evidence, corrected IMAP FETCH syntax, and clarified POP3 pre-QUIT retention.
+
 ## Remaining editorial pass
 
 The Chapter 54 audit aligned the simulation timeline with its reported duration and placed the corrupt echo inside the first batch for both batch sizes. Tamil scenario controls now describe each branch.

@@ -43,6 +43,8 @@ The course is published at https://vaikundamani-l.github.io/internet-protocol/.
 
 - Chapter 54 follow-up QA corrected milliseconds, the corrupt echo offset and Tamil scenario controls. Model regressions check both batch sizes.
 
+- Follow-up audit corrected the Chapter 57 PTP error bound and the Chapter 56 forwarding, IMAP and POP3 trace evidence.
+
 ## Current verification
 
 Run: https://github.com/vaikundamani-l/internet-protocol/actions/runs/43348384576
