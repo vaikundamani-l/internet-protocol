@@ -115,11 +115,11 @@ MODEL.rtc={
   e.push(event('Route the check and replace hop-local Layer 2','Check-ஐ route செய்து hop-local Layer 2 replace',
    'At t=30 ms, A sends an ICE STUN Binding request from its media socket. Its NAT rewrites 10.0.0.10:50000 to 198.51.100.10:62000; each router replaces Ethernet addresses and decrements IPv4 TTL, while the post-NAT UDP tuple remains 198.51.100.10:62000→203.0.113.20:62002.',
    't=30 ms-ல் A media socket-லிருந்து ICE STUN Binding request அனுப்புகிறது. NAT 10.0.0.10:50000-ஐ 198.51.100.10:62000 ஆக rewrite செய்கிறது; ஒவ்வொரு router-மும் Ethernet addresses replace செய்து IPv4 TTL decrement செய்கிறது; post-NAT UDP tuple 198.51.100.10:62000→203.0.113.20:62002 ஆகவே இருக்கும்.',
-   0,1,{timeMs:30,insideTuple:'10.0.0.10:50000→203.0.113.20:62002',postNATTuple:'198.51.100.10:62000→203.0.113.20:62002',UDP:true,STUN:'Binding request',USERNAME:'bUfrag:aUfrag',MESSAGE_INTEGRITY:true,FINGERPRINT:true,EthernetBefore:'A-MAC→gateway-MAC',EthernetAfter:'router-egress-MAC→next-hop-MAC',IPv4TTL:'64→62'}));
+   0,1,{timeMs:30,insideTuple:'10.0.0.10:50000→203.0.113.20:62002',postNATTuple:'198.51.100.10:62000→203.0.113.20:62002',UDP:true,STUN:'Binding request',USERNAME:'bUfrag:aUfrag',MESSAGE_INTEGRITY:true,FINGERPRINT:true,EthernetBefore:'02:00:00:00:59:0a→02:00:00:00:59:01',EthernetAfter:'02:00:00:00:59:02→02:00:00:00:59:03',IPv4TTL:'64→62'}));
   if(direct){
    e.push(event('Validate the response and nominate the direct pair','Response validate செய்து direct pair nominate',
-    'At t=55 ms, the authenticated Binding success returns through both NAT mappings. The controlling agent sends USE-CANDIDATE, and both peers select the succeeded server-reflexive pair.',
-    't=55 ms-ல் authenticated Binding success இரு NAT mappings வழியாகத் திரும்புகிறது. Controlling agent USE-CANDIDATE அனுப்பி இரு peers-மும் succeeded server-reflexive pair-ஐ select செய்கின்றன.',
+    'At t=55 ms, the authenticated Binding success returns through both NAT mappings. A then sends a separate Binding request with USE-CANDIDATE. Its successful response completes nomination of the server-reflexive pair.',
+    't=55 ms-ல் authenticated Binding success இரு NAT mappings வழியாகத் திரும்புகிறது. பின்னர் A, USE-CANDIDATE கொண்ட தனி Binding request அனுப்புகிறது. அதன் success response வந்ததும் server-reflexive pair nomination நிறைவடைகிறது.',
     2,0,{timeMs:55,checkResponseValid:true,pairState:'succeeded',controlling:'Peer A',USE_CANDIDATE:true,nominated:true,selectedCandidateType:'srflx↔srflx',selectedTuple:'198.51.100.10:62000↔203.0.113.20:62002',path:'DIRECT'}));
   }else{
    e.push(event('Direct checklist exhausts without a valid response','Valid response இல்லாமல் direct checklist முடிகிறது',
@@ -132,8 +132,8 @@ MODEL.rtc={
      't=3050 ms-ல் 401 realm/nonce challenge பின் A Allocate retry செய்கிறது. MESSAGE-INTEGRITY success; TURN XOR-RELAYED-ADDRESS 192.0.2.60:55000, lifetime 600 s தருகிறது. A, B-க்கு permission மற்றும் ChannelBind 0x4001 அமைக்கிறது.',
      0,3,{timeMs:3050,TURNServer:'192.0.2.60:3478',firstAllocateStatus:401,realm:'rtc.example.test',noncePresent:true,authentication:'long-term credential',XORRelayedAddress:'192.0.2.60:55000',allocationLifetimeSeconds:600,permissionPeerIP:'203.0.113.20',channelNumber:'0x4001'}));
     e.push(event('Check, nominate and maintain the relay pair','Relay pair-ஐ check, nominate செய்து maintain செய்தல்',
-     'At t=3120 ms, the check travels A→TURN→B and its success returns B→TURN→A. The relay pair is nominated; allocation, permission and channel refresh timers remain active.',
-     't=3120 ms-ல் check A→TURN→B சென்று success B→TURN→A திரும்புகிறது. Relay pair nominate ஆகிறது; allocation, permission, channel refresh timers active ஆகவே இருக்கும்.',
+     'At t=3120 ms, the check travels A→TURN→B and its success returns B→TURN→A. A then sends a separate USE-CANDIDATE check and gets a success response; allocation, permission and channel refresh timers remain active.',
+     't=3120 ms-ல் check A→TURN→B சென்று success B→TURN→A திரும்புகிறது. பின்னர் A தனி USE-CANDIDATE check அனுப்பி success response பெறுகிறது; allocation, permission, channel refresh timers active ஆகவே இருக்கும்.',
      3,2,{timeMs:3120,pairState:'succeeded',USE_CANDIDATE:true,nominated:true,selectedCandidateType:'relay↔srflx',selectedPath:'A→192.0.2.60:55000→203.0.113.20:62002',path:'RELAY',refreshRequired:true}));
    }else{
     e.push(event('Stop with no succeeded candidate pair','Succeeded candidate pair இல்லாமல் stop',
@@ -144,8 +144,8 @@ MODEL.rtc={
    }
   }
   e.push(event('Authenticate the selected path and carry protected traffic','Selected path authenticate செய்து protected traffic எடுத்துச் செல்லுதல்',
-   direct?'At t=80 ms, DTLS verifies the signaled fingerprint over the selected direct pair, derives SRTP/SCTP keys and sends protected media plus a data-channel message.':'At t=3180 ms, DTLS verifies the signaled fingerprint end to end across TURN, then SRTP/SCTP carries protected traffic; TURN relays ciphertext and transport metadata.',
-   direct?'t=80 ms-ல் selected direct pair மீது DTLS signaled fingerprint verify செய்து SRTP/SCTP keys derive செய்து protected media மற்றும் data-channel message அனுப்புகிறது.':'t=3180 ms-ல் TURN வழியாக DTLS signaled fingerprint-ஐ end to end verify செய்கிறது; பின்னர் SRTP/SCTP protected traffic எடுத்துச் செல்கிறது; TURN ciphertext, transport metadata relay செய்கிறது.',
+   direct?'At t=80 ms, DTLS verifies the signaled fingerprint over the selected direct pair, derives SRTP keys and establishes SCTP over DTLS and sends protected media plus a data-channel message.':'At t=3180 ms, DTLS verifies the signaled fingerprint end to end across TURN, then SRTP carries media and SCTP over DTLS carries data-channel traffic; TURN relays ciphertext and transport metadata.',
+   direct?'t=80 ms-ல் selected direct pair மீது DTLS signaled fingerprint verify செய்து SRTP keys derive செய்து SCTP over DTLS அமைத்து protected media மற்றும் data-channel message அனுப்புகிறது.':'t=3180 ms-ல் TURN வழியாக DTLS signaled fingerprint-ஐ end to end verify செய்கிறது; பின்னர் SRTP media-ஐயும் SCTP over DTLS data-channel traffic-ஐயும் எடுத்துச் செல்கின்றன; TURN ciphertext, transport metadata relay செய்கிறது.',
    0,2,{timeMs:direct?80:3180,DTLSFingerprintVerified:true,DTLSRole:'client/server negotiated',mediaProtection:'SRTP',dataChannel:'SCTP over DTLS',TURNSeesPlaintext:false,consentFreshnessRequired:true,path:direct?'DIRECT':'RELAY',delivered:true}));
   return{nodes,events:e,metrics:[['Signaling','CONNECTED'],['Selected pair',direct?'srflx direct':'TURN relay'],['Protected traffic','YES']],limit:pair('Mechanism-level teaching trace with explanatory times and documentation addresses. Candidate priority arithmetic, trickle timing, RTCP, codecs, congestion control and ICE restart are explained in the lesson but not emulated.','Explanatory times, documentation addresses கொண்ட mechanism-level teaching trace. Candidate priority arithmetic, trickle timing, RTCP, codecs, congestion control, ICE restart lesson-ல் விளக்கப்படுகின்றன; emulate செய்யப்படவில்லை.')};
  }

@@ -13,7 +13,8 @@ The course is published at https://vaikundamani-l.github.io/internet-protocol/.
 
 ## Lesson-depth editorial pass
 
-- Chapters 31–57 now have extended bilingual theory, worked calculations, troubleshooting investigations and solved exercises.
+- Chapters 31–59 now have extended bilingual theory, worked examples, troubleshooting investigations and solved exercises.
+- The Chapter 59 audit corrected ICE nomination narration and the distinction between SRTP key export and SCTP over DTLS. The Node test suite passed. Browser checks stopped at launch because the Playwright Chromium executable was missing.
 - Chapter 39's multicast model now traces receiver membership, ASM/SSM tree state, RPF acceptance and downstream delivery with actual `(S,G)`, IP, UDP-port and interface state rather than a two-step availability diagram.
 - Chapter 40's MPLS model now traces a two-label L3VPN packet through VRF classification, label push/swap/PHP, Route Target import and delivery/drop state, including stack bits and overhead.
 - Chapter 41's DNS model now traces stub transport, cache branching, parent referral/glue, child authority, DNSSEC SECURE/INSECURE/BOGUS outcomes and authenticated positive or negative delivery.

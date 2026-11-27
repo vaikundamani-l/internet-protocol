@@ -48,6 +48,8 @@ Chapter 58 now separates SNMP counter identity and epochs, syslog event and deli
 
 Chapter 59 now separates WebSocket/SSE delivery semantics, application signaling, ICE checks and nomination, authenticated TURN allocation state, consent and DTLS-SRTP/SCTP protection. Its visualization follows WSS signaling, concrete STUN mappings, NAT and routed Layer-2 changes, direct nomination, TURN fallback, refresh state and a no-valid-pair failure.
 
+Chapter 59 audit clarified the successful ICE nomination exchange and distinguished DTLS-SRTP key export from SCTP encapsulation inside DTLS. The routed check now displays concrete illustrative Ethernet addresses.
+
 ## Remaining editorial pass
 
 The Chapter 54 audit aligned the simulation timeline with its reported duration and placed the corrupt echo inside the first batch for both batch sizes. Tamil scenario controls now describe each branch.
