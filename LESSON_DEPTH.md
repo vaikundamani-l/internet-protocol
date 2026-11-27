@@ -8,7 +8,7 @@ The base course still contains all 65 bilingual chapters. A chapter is marked **
 
 | Chapters | Subject | Added depth per chapter | Status |
 | --- | --- | --- | --- |
-| 31–57 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering, framed TCP projects, authenticated resumable sharing, evidence-first endpoint diagnostics, two-router stateful forwarding, reproducible TCP benchmark research, SSH/SFTP host-key lifecycle, authenticated mail delivery and NTP/PTP timing uncertainty | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
+| 31–58 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering, framed TCP projects, authenticated resumable sharing, evidence-first endpoint diagnostics, two-router stateful forwarding, reproducible TCP benchmark research, SSH/SFTP host-key lifecycle, authenticated mail delivery, NTP/PTP timing uncertainty and SNMP/syslog/streaming-telemetry evidence | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
 
 Chapter 44's follow-up audit verified the depth contract and corrected the visualization so the EVPN Type 2 advertisement travels from the remote VTEP to the ingress VTEP and final decapsulation terminates at the remote VTEP/host. Reduced-motion, Tamil narration, mobile overflow and accessibility now have chapter-specific browser regression coverage.
 
@@ -44,13 +44,15 @@ Chapter 57 now derives NTP offset and delay while exposing asymmetric-path bias,
 
 Chapter 57 audit clarified that 15 µs bounds the magnitude of the modeled PTP timing error from above. The Chapter 56 audit aligned the relay IP with SPF evidence, corrected IMAP FETCH syntax, and clarified POP3 pre-QUIT retention.
 
+Chapter 58 now separates SNMP counter identity and epochs, syslog event and delivery boundaries, and gNMI subscription/freshness semantics. Its visualization follows an authenticated TLS/HTTP2 gNMI stream through a routed Layer-2 rewrite, exact target/path/timestamp fields, a stored rate, a counter-discontinuity rejection and a stale-data transport failure.
+
 ## Remaining editorial pass
 
 The Chapter 54 audit aligned the simulation timeline with its reported duration and placed the corrupt echo inside the first batch for both batch sizes. Tamil scenario controls now describe each branch.
 
 | Chapters | Status |
 | --- | --- |
-| 58–62 | Service-protocol depth pass pending |
+| 59–62 | Service-protocol depth pass pending |
 | 63–65 | Capstone/review depth pass pending |
 | 1–30 | Foundations and core depth pass pending |
 
