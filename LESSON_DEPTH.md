@@ -8,7 +8,7 @@ The base course still contains all 65 bilingual chapters. A chapter is marked **
 
 | Chapters | Subject | Added depth per chapter | Status |
 | --- | --- | --- | --- |
-| 31–59 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering, framed TCP projects, authenticated resumable sharing, evidence-first endpoint diagnostics, two-router stateful forwarding, reproducible TCP benchmark research, SSH/SFTP host-key lifecycle, authenticated mail delivery, NTP/PTP timing uncertainty, SNMP/syslog/streaming-telemetry evidence and WebSocket/SSE/WebRTC connectivity | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
+| 31–60 | Addressing, link, switched-topology, IPv6 translation, TCP, routing, MPLS, DNS, browser protocol security, TLS, VXLAN/EVPN/SDN, cloud VPC/load-balancer, Kubernetes, mobile/satellite/constrained-IoT, network automation/observability engineering, framed TCP projects, authenticated resumable sharing, evidence-first endpoint diagnostics, two-router stateful forwarding, reproducible TCP benchmark research, SSH/SFTP host-key lifecycle, authenticated mail delivery, NTP/PTP timing uncertainty, SNMP/syslog/streaming-telemetry evidence, WebSocket/SSE/WebRTC connectivity and mDNS/DNS-SD/SSDP local discovery | 3 or more extended theory sections, 2 multi-step worked cases, 2 troubleshooting investigations, 3 or more solved exercises, cross-topic connections | Depth complete and validated |
 
 Chapter 44's follow-up audit verified the depth contract and corrected the visualization so the EVPN Type 2 advertisement travels from the remote VTEP to the ingress VTEP and final decapsulation terminates at the remote VTEP/host. Reduced-motion, Tamil narration, mobile overflow and accessibility now have chapter-specific browser regression coverage.
 
@@ -50,13 +50,15 @@ Chapter 59 now separates WebSocket/SSE delivery semantics, application signaling
 
 Chapter 59 audit clarified the successful ICE nomination exchange and distinguished DTLS-SRTP key export from SCTP encapsulation inside DTLS. The routed check now displays concrete illustrative Ethernet addresses.
 
+Chapter 60 now separates mDNS link scope, probing, cache-flush and TTL state from DNS-SD record assembly and later service connectivity. Its visualization follows real PTR/SRV/TXT/A fields into ARP, TCP and HTTP, or follows SSDP M-SEARCH, randomized response, LOCATION and a separate HTTP fetch, with distinct VLAN, AP-isolation and stale-listener failures.
+
 ## Remaining editorial pass
 
 The Chapter 54 audit aligned the simulation timeline with its reported duration and placed the corrupt echo inside the first batch for both batch sizes. Tamil scenario controls now describe each branch.
 
 | Chapters | Status |
 | --- | --- |
-| 60–62 | Service-protocol depth pass pending |
+| 61–62 | Service-protocol depth pass pending |
 | 63–65 | Capstone/review depth pass pending |
 | 1–30 | Foundations and core depth pass pending |
 
