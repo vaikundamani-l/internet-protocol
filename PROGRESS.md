@@ -13,7 +13,8 @@ The course is published at https://vaikundamani-l.github.io/internet-protocol/.
 
 ## Lesson-depth editorial pass
 
-- Chapters 31–60 now have extended bilingual theory, worked examples, troubleshooting investigations and solved exercises.
+- Chapters 31–61 now have extended bilingual theory, worked examples, troubleshooting investigations and solved exercises.
+- Chapter 61 now traces PPPoE PADI/PADO/PADR/PADS and Session-ID allocation into LCP, PAP and IPCP, then contrasts that state machine with GRE inner/outer routing, Protocol 47, per-hop Layer-2 rewrites, independent TTL changes and PMTU failure evidence.
 - Chapter 60 now traces mDNS/DNS-SD and SSDP as real packet/state journeys. It covers TTL/Hop Limit 255, probing, cache-flush and goodbye behavior, PTR/SRV/TXT/A assembly, M-SEARCH response fields, LOCATION retrieval, ARP/TCP/HTTP follow-through and separate AP-isolation, VLAN-scope and stale-listener failures.
 - The Chapter 59 audit corrected ICE nomination narration and the distinction between SRTP key export and SCTP over DTLS. The Node test suite passed. Browser checks stopped at launch because the Playwright Chromium executable was missing.
 - Chapter 39's multicast model now traces receiver membership, ASM/SSM tree state, RPF acceptance and downstream delivery with actual `(S,G)`, IP, UDP-port and interface state rather than a two-step availability diagram.
